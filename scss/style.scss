@@ -1,0 +1,32 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+@import '_functionals.scss';
+
+@import 'components/_title.scss';
+@import 'components/_questions.scss';
+@import 'components/_functions.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+#header {
+  @include s(100%, 6.75rem);
+  border-bottom: $border;
+}
+
+#main {
+  @include f-a-j(flex-start, center);
+  @include s(100%, calc(100vh - 6.75rem));
+  background-color: $bg-color;
+
+  #form-editor {
+    @include s(48.125rem, auto);
+    margin-top: 1rem;
+  }
+}

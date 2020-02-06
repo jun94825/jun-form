@@ -1,0 +1,89 @@
+@mixin s($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+@mixin f-a-j($a, $j) {
+  display: flex;
+  align-items: $a;
+  justify-content: $j;
+}
+
+@mixin input($w) {
+  width: $w;
+  border: none;
+  border-bottom: 0.0625rem solid $gray;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus + .bar:before,
+  &:focus + .bar:after {
+    width: 50%;
+  }
+}
+
+@mixin bar($w, $p) {
+  width: $w;
+  position: $p;
+
+  &::before {
+    left: 50%;
+  }
+
+  &::after {
+    right: 50%;
+  }
+
+  &::before,
+  &::after {
+    @include s(0, 0.125rem);
+    content: '';
+    position: absolute;
+    background: $primary;
+    transition: 0.25s ease all;
+    -moz-transition: 0.25s ease all;
+    -webkit-transition: 0.25s ease all;
+  }
+}
+
+@mixin switch {
+  .switch {
+    @include s(2.75rem, 1.125rem);
+    cursor: pointer;
+    margin-left: 1rem;
+    position: relative;
+    transition: all 0.25s;
+    display: inline-block;
+    border-radius: 1.25rem;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+
+  .switch::after {
+    @include s(1.5rem, 1.5rem);
+    top: -0.25rem;
+    left: -0.125rem;
+    content: '';
+    position: absolute;
+    transition: all 0.25s;
+    border-radius: 1.125rem;
+    background-color: $white;
+    box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.15),
+      0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  }
+
+  .offscreen {
+    top: 0;
+    left: -1917.375rem;
+    position: absolute;
+  }
+
+  input[type='checkbox']:checked + .switch {
+    background-color: $primary;
+  }
+
+  input[type='checkbox']:checked + .switch::after {
+    transform: translateX(1.5rem);
+  }
+}
