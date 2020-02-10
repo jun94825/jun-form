@@ -13,6 +13,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Noto Sans TC', sans-serif;
+  user-select: none; // 禁止選取
 }
 
 #header {
@@ -22,11 +23,36 @@
 
 #main {
   @include f-a-j(flex-start, center);
-  @include s(100%, calc(100vh - 6.75rem));
+  // @include s(100%, calc(100vh - 6.75rem));
+  @include s(100%, auto);
   background-color: $bg-color;
 
   #form-editor {
     @include s(48.125rem, auto);
     margin-top: 1rem;
+  }
+}
+
+// 以下為拖曳測試代碼
+
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.test {
+  width: 770px;
+  min-height: 100px;
+  border: $border;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  background-color: $white;
+  position: absolute;
+
+  .box {
+    width: 50px;
+    height: 300px;
+    background-color: green;
+    margin-left: 1rem;
   }
 }
