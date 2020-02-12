@@ -1,4 +1,5 @@
 export default Vue.component('question-c', {
+  props: ['index'],
   template: `
     <div class="question">
       <div class="drag-bar">
@@ -6,7 +7,7 @@ export default Vue.component('question-c', {
         <div class="line"></div>
       </div>
 
-      <small>題組 1</small>
+      <small>題組 {{ index + 1}}</small>
 
       <input type="text" class="title" v-model="txt">
       <span class="bar"></span>
