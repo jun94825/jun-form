@@ -1,0 +1,131 @@
+.question {
+  @include s(100%, 23.75rem);
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  border: $border;
+  border-radius: $radius;
+  background-color: $white;
+  position: absolute;
+
+  .drag-bar {
+    @include s(100%, 0);
+    @include f-a-j(center, unset);
+    cursor: move;
+    padding-bottom: 1rem;
+    flex-direction: column;
+
+    .line {
+      width: 3rem;
+      margin-bottom: 0.1875rem;
+      border-bottom: 0.125rem solid #ccc;
+    }
+  }
+
+  small {
+    color: #666;
+  }
+
+  .title {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+  }
+
+  input {
+    @include input(100%);
+  }
+
+  .bar {
+    @include bar(100%, relative);
+  }
+
+  .type {
+    @include f-a-j(center, unset);
+    margin-top: 1.5rem;
+
+    #menu-area {
+      @include s(12.5rem, 2.5rem);
+      @include f-a-j(center, unset);
+      margin-left: 1rem;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      border-radius: $radius;
+      background-color: #eee;
+
+      p {
+        margin-left: 1rem;
+        margin-right: auto;
+      }
+    }
+  }
+
+  .options {
+    margin-top: 2rem;
+
+    .option {
+      @include f-a-j(center, unset);
+      margin-bottom: 1.5rem;
+
+      .shit {
+        width: 65%;
+        position: relative;
+
+        input {
+          @include input(100%);
+          font-size: 1.125rem;
+          padding-bottom: 0.125rem;
+        }
+
+        .bar {
+          @include bar(100%, absolute);
+          top: 1.75rem;
+          left: 0;
+        }
+      }
+
+      .fa-circle {
+        color: #ccc;
+        font-size: 1.25rem;
+        margin-right: 1rem;
+      }
+
+      .fa-times,
+      .fa-link {
+        cursor: pointer;
+        font-size: 1.25rem;
+        margin-left: 1.5rem;
+      }
+    }
+  }
+
+  .footer {
+    @include s(100%, 3.5rem);
+    @include f-a-j(center, unset);
+    font-size: 0.8rem;
+    margin-top: auto;
+    border-top: $border;
+
+    .switch-area {
+      @include f-a-j(center, unset);
+      @include switch();
+    }
+
+    .line {
+      height: 2rem;
+      margin-left: 1rem;
+      padding-right: 1rem;
+      border-left: $border;
+    }
+
+    .delete-area {
+      @include f-a-j(center, unset);
+
+      .fa-trash {
+        cursor: pointer;
+        margin-right: 1rem;
+        font-size: 1.125rem;
+      }
+    }
+  }
+}

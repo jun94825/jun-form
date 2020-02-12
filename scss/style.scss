@@ -3,17 +3,16 @@
 @import '_functionals.scss';
 
 @import 'components/_title.scss';
-@import 'components/_questions.scss';
-@import 'components/_functions.scss';
+@import 'components/_question.scss';
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
 
 * {
   margin: 0;
   padding: 0;
+  user-select: none;
   box-sizing: border-box;
   font-family: 'Noto Sans TC', sans-serif;
-  user-select: none; // 禁止選取
 }
 
 #header {
@@ -22,14 +21,33 @@
 }
 
 #main {
-  @include f-a-j(flex-start, center);
-  // @include s(100%, calc(100vh - 6.75rem));
   @include s(100%, auto);
+  // @include s(100%, calc(100vh - 6.75rem));
+  @include f-a-j(center, unset);
+  min-height: 100vh;
+  flex-direction: column;
   background-color: $bg-color;
 
   #form-editor {
     @include s(48.125rem, auto);
     margin-top: 1rem;
+  }
+
+  .add-new-question {
+    @include s(48.125rem, 3.125rem);
+    @include f-a-j(center, center);
+    color: $white;
+    cursor: pointer;
+    margin-top: 1rem;
+    border-radius: $radius;
+    background-color: $primary;
+    margin-bottom: 5rem;
+
+    .fa-times {
+      font-size: 1.25rem;
+      margin-right: 1rem;
+      transform: rotate(45deg);
+    }
   }
 }
 
@@ -40,19 +58,27 @@
   position: relative;
 }
 
-.test {
+.questions {
   width: 770px;
-  min-height: 100px;
   border: $border;
   margin-top: 1rem;
-  border-radius: 0.5rem;
-  background-color: $white;
+  min-height: 100px;
   position: absolute;
+  border-radius: $radius;
+  background-color: $white;
 
-  .box {
-    width: 50px;
-    height: 300px;
-    background-color: green;
-    margin-left: 1rem;
-  }
+  // .box {
+  //   width: 50px;
+  //   height: 300px;
+  //   background-color: green;
+  //   margin-left: 1rem;
+  // }
+}
+
+.one {
+  height: 250px;
+}
+
+.two {
+  height: 175px;
 }

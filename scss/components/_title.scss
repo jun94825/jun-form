@@ -1,34 +1,48 @@
-#title {
-  @include s(100%, 8.75rem);
+.title-c {
+  @include s(100%, 11.25rem);
   @include f-a-j(center, unset);
+  padding: 1.5rem;
   border: $border;
-  border-radius: 0.5rem;
+  position: relative;
+  border-radius: $radius;
   flex-direction: column;
   background-color: $white;
 
   .line {
     @include s(100%, 0.625rem);
     background-color: $primary;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+    top: 0;
+    left: 0;
+    position: absolute;
   }
 
-  .title {
-    height: 3rem;
+  .title-text {
     font-size: 1.75rem;
-    margin-top: 0.75rem;
   }
 
   .description {
-    height: 1.5rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    padding-bottom: 2px;
   }
 
   input {
-    @include input(90%);
+    @include input(100%);
   }
 
   .bar {
-    @include bar(90%, relative);
+    @include bar(100%, relative);
+  }
+
+  .switch-area {
+    @include f-a-j(center, unset);
+    @include switch();
+    margin-top: 1.5rem;
+    margin-right: auto;
+
+    p {
+      font-size: 0.8rem;
+    }
   }
 }
