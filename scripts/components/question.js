@@ -7,17 +7,17 @@ export default Vue.component('question-c', {
         <div class="line"></div>
       </div>
 
-      <small>題組 {{ index + 1}}</small>
+      <small>題組 {{ index }}</small>
 
       <input type="text" class="title" v-model="txt">
       <span class="bar"></span>
 
       <div class="type">
         <p>類型</p>
-        <div id="menu-area" class="c-pointer">
-          <img class="icon" src="images/radio_button.png">
+        <div id="menu-area">
+          <i class="far fa-dot-circle"></i>
           <p>選擇題</p>
-          <img class="icon" src="images/arrow.png">
+          <i class="fas fa-caret-down"></i>
         </div>
       </div>
 
