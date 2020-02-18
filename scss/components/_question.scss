@@ -1,8 +1,7 @@
 .question {
-  @include s(100%, 23.75rem);
+  @include s(100%, auto);
   display: flex;
   flex-direction: column;
-  // margin-top: 1rem;
   padding: 0.5rem 1.5rem;
   border: $border;
   border-radius: $radius;
@@ -41,33 +40,66 @@
     @include bar(100%, relative);
   }
 
-  .type {
+  .type-container {
     @include f-a-j(center, unset);
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    position: relative;
 
-    #menu-area {
-      @include s(12rem, 2.5rem);
+    .current-type,
+    .type {
+      @include s(11rem, 2.5rem);
       @include f-a-j(center, unset);
       cursor: pointer;
       margin-left: 1rem;
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      border-radius: $radius;
       background-color: #eee;
+      position: absolute;
+      left: 2rem;
 
-      p {
+      .far,
+      .fas {
+        font-size: 1.25rem;
         margin-left: 1rem;
-        margin-right: auto;
+        margin-right: 1rem;
       }
 
-      .fa-dot-circle {
-        font-size: 1.25rem;
+      .fa-sort-down {
+        margin-left: auto;
+        margin-bottom: 0.5rem;
       }
+    }
 
-      .fa-caret-down {
-        font-size: 1.25rem;
-        margin-right: 0.25rem;
-      }
+    .type-list {
+      position: absolute;
+      top: -0.5rem;
+      z-index: 30678;
+    }
+
+    .checkbox {
+      top: 40px;
+    }
+
+    .dropdown {
+      top: 80px;
+    }
+
+    .literal {
+      top: 120px;
+    }
+
+    .date {
+      top: 160px;
+    }
+
+    .number {
+      top: 200px;
+    }
+
+    .email {
+      top: 240px;
+    }
+
+    .english {
+      top: 280px;
     }
   }
 
@@ -114,7 +146,7 @@
   .footer {
     @include s(100%, 3.5rem);
     @include f-a-j(center, unset);
-    margin-top: auto;
+    margin-top: 1rem;
     font-size: 0.8rem;
     border-top: $border;
 

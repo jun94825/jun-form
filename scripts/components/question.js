@@ -1,5 +1,7 @@
+import store from '../../store/index.js';
+
 export default Vue.component('question-c', {
-  props: ['index'],
+  props: ['data', 'index'],
   template: `
     <div class="question">
       <div class="drag-bar">
@@ -9,33 +11,31 @@ export default Vue.component('question-c', {
 
       <small>題組 {{ index }}</small>
 
-      <input type="text" class="title" v-model="txt">
+      <input type="text" class="title" v-model="data.Title">
       <span class="bar"></span>
 
-      <div class="type">
+      <div class="type-container">
         <p>類型</p>
-        <div id="menu-area">
-          <i class="far fa-dot-circle"></i>
-          <p>選擇題</p>
-          <i class="fas fa-caret-down"></i>
+
+        <div class="current-type" v-if="!typeStatus" @click="up">
+          <i :class="currentType.class"></i>
+          <p>{{ currentType.chinese }}</p>
+          <i class="fas fa-sort-down"></i>
+        </div>
+
+        <div class="type-list" v-else>
+          <div class="type" :class="item.type" v-for="(item, index) in typeList" :key="index" @click="down(item)">
+            <i :class="item.class"></i>
+            <p>{{ item.chinese }}</p>
+          </div>
         </div>
       </div>
 
       <div class="options">
-        <div class="option">
+        <div class="option" v-for="(item, index) in data.Options" :key="index">
           <i class="far fa-circle"></i>
           <div class="shit">
-            <input type="text" v-model="txt2">
-            <span class="bar"></span>
-          </div>
-          <i class="fas fa-times"></i>
-          <i class="fas fa-link"></i>
-        </div>
-
-        <div class="option">
-          <i class="far fa-circle"></i>
-          <div class="shit">
-            <input type="text" v-model="txt2">
+            <input type="text" v-model="item.Value">
             <span class="bar"></span>
           </div>
           <i class="fas fa-times"></i>
@@ -53,9 +53,7 @@ export default Vue.component('question-c', {
           />
           <label for="toggle3" class="switch"></label>
         </div>
-
         <div class="line"></div>
-
         <div class="delete-area">
           <i class="fas fa-trash"></i>  
           <p>刪除此題組</p>
@@ -65,8 +63,32 @@ export default Vue.component('question-c', {
   `,
   data() {
     return {
-      txt: '標題',
-      txt2: '正文媽媽',
+      typeStatus: false,
     };
+  },
+  computed: {
+    typeList() {
+      return store.state.typeList;
+    },
+    currentType: {
+      get() {
+        return this.typeList.find(item => item.type === this.data.Type);
+      },
+      set(value) {
+        this.data.Type = value;
+      },
+    },
+  },
+  methods: {
+    up() {
+      this.typeStatus = true;
+    },
+    down(item) {
+      this.typeStatus = false;
+      this.currentType = item.type;
+    },
+  },
+  mounted() {
+    console.log(this.data);
   },
 });
