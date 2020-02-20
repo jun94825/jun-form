@@ -2,46 +2,38 @@
 import store from '../store/index.js';
 
 // Components
-import Title from './components/title.js';
-import Question from './components/question.js';
+import './components/title.js';
+import './components/question.js';
+import './components/dialog.js';
 
 // Vue Select
 Vue.component('v-select', VueSelect.VueSelect);
 
 Vue.component('jun-form', {
-  props: ['fuck'],
-  components: { Title, Question },
-  data() {
-    return {
-      Deselect: {
-        render: createElement => createElement('span', '❌'),
-      },
-    };
-  },
   template: `
     <div>
+      <Dialog v-if="dialogStatus"></Dialog>
+      
       <div id="header">
         <p>Jun Form</p>
       </div>
       
       <div id="main">
         <div id="form-editor">
-          <Title />
+          <Title :form="form" />
 
           <draggable v-model="form.Questions" @start="drag" @end="end" ghost-class="ghost" v-bind="dragOptions">
             <transition-group>
-              <Question v-for="(item, index) in form.Questions" :key="item.Guid" :data="item" :index="index"></Question>
+              <Question v-for="(question, index) in form.Questions" :key="question.Guid" :question="question" :index="index" />
             </transition-group>
           </draggable>
         </div>
 
-        <div class="add-new-question">
+        <div class="add-new-question" @click="addNewQuestion">
           <i class="fas fa-times"></i>
           <p>新增題組</p>
         </div>
       </div>
-
-      <v-select :components="{ Deselect }" :options="['Canada', 'United States']" multiple></v-select>
     </div>
   `,
   computed: {
@@ -56,6 +48,9 @@ Vue.component('jun-form', {
     form() {
       return store.state.form;
     },
+    dialogStatus() {
+      return store.state.dialogStatus;
+    },
   },
   methods: {
     getGuid() {
@@ -66,6 +61,22 @@ Vue.component('jun-form', {
           .toUpperCase();
       }
       return `${g()}${g()}-${g()}-${g()}-${g()}-${g()}${g()}${g()}`;
+    },
+    addNewQuestion() {
+      this.form.Questions.push({
+        Guid: this.getGuid(),
+        Title: '',
+        Type: 'radio',
+        Options: [
+          {
+            Guid: this.getGuid(),
+            Value: '選項 1',
+            Binding: [],
+            Score: 0,
+          },
+        ],
+        Required: false,
+      });
     },
     // 不重要
     drag() {
@@ -81,8 +92,9 @@ Vue.component('jun-form', {
   created() {
     const form = {
       Guid: this.getGuid(),
-      Title: '無標題表單',
+      Title: '',
       Description: '',
+      ScoreEnable: false,
       Questions: [
         {
           Guid: this.getGuid(),
@@ -90,42 +102,15 @@ Vue.component('jun-form', {
           Type: 'radio',
           Options: [
             {
-              Guid: '7B9C122B-2DC7-93D8-CCE2-12494144AFA2',
+              Guid: this.getGuid(),
               Value: '選項 1',
-              Binding: [],
-              Score: 0,
-            },
-            {
-              Guid: '53A22FBF-FBF1-6B9D-C050-B04B5813424C',
-              Value: '選項 2',
-              Binding: [],
-              Score: 0,
-            },
-            {
-              Guid: '05083595-5266-1711-1A91-7417503BA8AB',
-              Value: '選項 3',
               Binding: [],
               Score: 0,
             },
           ],
           Required: false,
         },
-        {
-          Guid: this.getGuid(),
-          Title: '第二題',
-          Type: 'checkbox',
-          Options: [],
-          Required: false,
-        },
-        {
-          Guid: this.getGuid(),
-          Title: '第三題',
-          Type: 'dropdown',
-          Options: [],
-          Required: false,
-        },
       ],
-      ScoreEnable: false,
     };
 
     store.commit('createFormData', form);

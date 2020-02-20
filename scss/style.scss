@@ -4,6 +4,7 @@
 // Components
 @import 'components/_title.scss';
 @import 'components/_question.scss';
+@import 'components/_dialog.scss';
 
 // Google Fonts
 @import url('https://fonts.googleapis.com/css?family=Lacquer&display=swap');
@@ -36,7 +37,7 @@
   @include f-a-j(center, unset);
   min-height: 100vh;
   flex-direction: column;
-  background-color: $bg-color;
+  background-color: rgba($color: $bg-color, $alpha: 0.75);
 
   #form-editor {
     @include s(48.125rem, auto);
@@ -48,10 +49,9 @@
     @include f-a-j(center, center);
     color: $white;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-bottom: 5rem;
     border-radius: $radius;
     background-color: $primary;
-    margin-bottom: 5rem;
 
     .fa-times {
       font-size: 1.25rem;

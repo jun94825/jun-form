@@ -1,0 +1,54 @@
+.mask {
+  @include s(100%, 100%);
+  background-color: rgba($color: #000000, $alpha: 0.75);
+  position: fixed;
+  z-index: 30678;
+
+  .dialog {
+    @include s(600px, 300px);
+    background-color: #fff;
+    position: fixed;
+    top: 150px;
+    left: calc(50% - (600px / 2));
+    border-radius: 4px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+
+    p:nth-child(1) {
+      font-size: 1.75rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    p:nth-child(2) {
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-container {
+      @include s(100%, auto);
+      margin-top: auto;
+      display: flex;
+      justify-content: end;
+
+      .btn-save,
+      .btn-cancel {
+        @include s(4.5rem, 2.5rem);
+        @include f-a-j(center, center);
+        color: #fff;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .btn-save {
+        margin-left: 1rem;
+        background-color: $primary;
+      }
+
+      .btn-cancel {
+        margin-left: auto;
+        background-color: #bf360c;
+      }
+    }
+  }
+}

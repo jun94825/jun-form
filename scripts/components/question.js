@@ -1,7 +1,7 @@
 import store from '../../store/index.js';
 
-export default Vue.component('question-c', {
-  props: ['data', 'index'],
+export default Vue.component('Question', {
+  props: ['question', 'index'],
   template: `
     <div class="question">
       <div class="drag-bar">
@@ -9,9 +9,9 @@ export default Vue.component('question-c', {
         <div class="line"></div>
       </div>
 
-      <small>題組 {{ index }}</small>
+      <small>題組 {{ index + 1 }}</small>
 
-      <input type="text" class="title" v-model="data.Title">
+      <input type="text" class="title" v-model="question.Title" placeholder="問題">
       <span class="bar"></span>
 
       <div class="type-container">
@@ -32,14 +32,29 @@ export default Vue.component('question-c', {
       </div>
 
       <div class="options">
-        <div class="option" v-for="(item, index) in data.Options" :key="index">
-          <i class="far fa-circle"></i>
+        <div class="option" v-for="(option, index) in question.Options" :key="index"
+          v-if="question.Type === 'radio' || question.Type === 'checkbox' || question.Type === 'dropdown'"
+        >
+          <i :class="currentType.class"></i>
           <div class="shit">
-            <input type="text" v-model="item.Value">
+            <input type="text" v-model="option.Value">
             <span class="bar"></span>
           </div>
-          <i class="fas fa-times"></i>
-          <i class="fas fa-link"></i>
+          <i class="fas fa-times" @click="delOption(index)"></i>
+          <i class="fas fa-link" @click="switchDialog(option)"></i>
+        </div>
+
+        <div class="option" v-else>
+          <i :class="currentType.class"></i>
+          <p>{{ currentType.chinese }}</p>
+        </div>
+
+        <div class="option" v-if="question.Type === 'radio' || question.Type === 'checkbox' || question.Type === 'dropdown'">
+          <i :class="currentType.class"></i>
+          <div class="shit">
+            <input type="text" placeholder="新增選項" @click="addNewOption">
+            <span class="bar"></span>
+          </div>
         </div>
       </div>
 
@@ -47,15 +62,16 @@ export default Vue.component('question-c', {
         <div class="switch-area">
           <p>本題組為必填</p>
           <input
-            id="toggle3"
+            :id="question.Guid"
             type="checkbox"
             class="offscreen"
+            v-model="question.Required"
           />
-          <label for="toggle3" class="switch"></label>
+          <label :for="question.Guid" class="switch"></label>
         </div>
         <div class="line"></div>
         <div class="delete-area">
-          <i class="fas fa-trash"></i>  
+          <i class="fas fa-trash" @click="delQuestion"></i>  
           <p>刪除此題組</p>
         </div>
       </div>
@@ -67,15 +83,18 @@ export default Vue.component('question-c', {
     };
   },
   computed: {
+    form() {
+      return store.state.form;
+    },
     typeList() {
       return store.state.typeList;
     },
     currentType: {
       get() {
-        return this.typeList.find(item => item.type === this.data.Type);
+        return this.typeList.find(item => item.type === this.question.Type);
       },
       set(value) {
-        this.data.Type = value;
+        this.question.Type = value;
       },
     },
   },
@@ -83,12 +102,35 @@ export default Vue.component('question-c', {
     up() {
       this.typeStatus = true;
     },
-    down(item) {
+    down(question) {
       this.typeStatus = false;
-      this.currentType = item.type;
+      this.currentType = question.type;
     },
-  },
-  mounted() {
-    console.log(this.data);
+    addNewOption() {
+      this.question.Options.push({
+        Guid: this.getGuid(),
+        Value: `選項 ${this.question.Options.length + 1}`,
+        Binding: [],
+        Score: 0,
+      });
+    },
+    delOption(index) {
+      this.question.Options.splice(index, 1);
+    },
+    delQuestion() {
+      this.form.Questions.splice(this.index, 1);
+    },
+    switchDialog(option) {
+      store.commit('switchDialog', option);
+    },
+    getGuid() {
+      function g() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1)
+          .toUpperCase();
+      }
+      return `${g()}${g()}-${g()}-${g()}-${g()}-${g()}${g()}${g()}`;
+    },
   },
 });

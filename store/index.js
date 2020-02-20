@@ -45,10 +45,16 @@ export default new Vuex.Store({
   state: {
     typeList,
     form: null,
+    dialogStatus: false,
+    currentOption: null,
   },
   mutations: {
     createFormData(state, payload) {
       state.form = payload;
+    },
+    switchDialog(state, payload) {
+      state.currentOption = payload;
+      state.dialogStatus = !state.dialogStatus;
     },
   },
 });
