@@ -19,12 +19,29 @@ Vue.component('jun-form', {
       </div>
       
       <div id="main">
+        <div class="functions">
+          <div class="drag" @click="switchDragStatus">
+            <i class="fas fa-random"></i>
+            <p>拖曳題組</p>
+          </div>
+          <div class="confirm">
+            <i class="fas fa-check"></i>
+            <p>完成編輯</p>
+          </div>
+        </div>
+
         <div id="form-editor">
           <Title :form="form" />
+          
+          <div v-if="!dragStatus">
+            <Question v-for="(question, index) in form.Questions" :key="question.Guid" :question="question" :index="index" />
+          </div>
 
-          <draggable v-model="form.Questions" @start="drag" @end="end" ghost-class="ghost" v-bind="dragOptions">
+          <draggable v-model="form.Questions" @start="drag" @end="end" ghost-class="ghost" v-bind="dragOptions" v-else>
             <transition-group>
-              <Question v-for="(question, index) in form.Questions" :key="question.Guid" :question="question" :index="index" />
+              <div class="drag-container" v-for="(question, index) in form.Questions" :key="question.Guid">
+                題組 {{ index + 1 }} - {{ question.Title }}
+              </div>
             </transition-group>
           </draggable>
         </div>
@@ -36,6 +53,11 @@ Vue.component('jun-form', {
       </div>
     </div>
   `,
+  data() {
+    return {
+      dragStatus: false,
+    };
+  },
   computed: {
     dragOptions() {
       return {
@@ -77,6 +99,9 @@ Vue.component('jun-form', {
         ],
         Required: false,
       });
+    },
+    switchDragStatus() {
+      this.dragStatus = !this.dragStatus;
     },
     // 不重要
     drag() {

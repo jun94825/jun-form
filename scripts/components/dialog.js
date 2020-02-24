@@ -28,9 +28,9 @@ export default Vue.component('Dialog', {
     options() {
       const options = [];
 
-      store.state.form.Questions.forEach(question => {
+      store.state.form.Questions.forEach((question, index) => {
         options.push({
-          title: question.Title,
+          title: `題組 ${index + 1}`,
           guid: question.Guid,
         });
       });

@@ -39,9 +39,48 @@
   flex-direction: column;
   background-color: rgba($color: $bg-color, $alpha: 0.75);
 
+  .functions {
+    @include s(48.125rem, auto);
+    @include f-a-j(center, flex-end);
+    margin: 0.5rem 0;
+
+    .confirm,
+    .drag {
+      @include f-a-j(center, unset);
+      cursor: pointer;
+      font-size: 0.9rem;
+      border-radius: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      background-color: #fff;
+      border: 1px solid #999;
+      margin-left: 1rem;
+
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .confirm > i {
+      color: #7bc235;
+    }
+
+    .drag > i {
+      color: #ff5722;
+    }
+  }
+
   #form-editor {
     @include s(48.125rem, auto);
-    margin-top: 1rem;
+
+    .drag-container {
+      @include s(100%, auto);
+      cursor: move;
+      margin-bottom: 0.5rem;
+      background-color: #fff;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      padding: 0.25rem 0 0.25rem 0.5rem;
+    }
   }
 
   .add-new-question {

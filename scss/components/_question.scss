@@ -7,8 +7,7 @@
   border-radius: $radius;
   background-color: $white;
   position: relative;
-  margin-bottom: 1rem;
-  cursor: move;
+  margin-bottom: 0.5rem;
 
   .drag-bar {
     @include s(100%, 0);
