@@ -44,17 +44,22 @@ const typeList = [
 export default new Vuex.Store({
   state: {
     typeList,
-    form: null,
+    form: {},
+    currentQuestion: {},
+    currentOption: {},
     dialogStatus: false,
-    currentOption: null,
   },
   mutations: {
     createFormData(state, payload) {
       state.form = payload;
     },
     switchDialog(state, payload) {
-      state.currentOption = payload;
+      state.currentQuestion = payload ? payload.question : {};
+      state.currentOption = payload ? payload.option : {};
       state.dialogStatus = !state.dialogStatus;
+    },
+    changeBinding(state, payload) {
+      state.currentOption.Binding = payload;
     },
   },
 });

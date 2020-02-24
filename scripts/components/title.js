@@ -1,5 +1,7 @@
 export default Vue.component('Title', {
-  props: ['form'],
+  props: {
+    form: Object,
+  },
   template: `
     <div class="title-c">
       <div class="line"></div>

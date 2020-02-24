@@ -1,15 +1,16 @@
 import store from '../../store/index.js';
 
 export default Vue.component('Question', {
-  props: ['question', 'index'],
+  props: {
+    question: Object,
+    index: Number,
+  },
   template: `
     <div class="question">
-      <div class="drag-bar">
-        <div class="line"></div>
-        <div class="line"></div>
+      <div class="details">
+        <small>題組 {{ index + 1 }}</small>
+        <i class="fas fa-link"></i>
       </div>
-
-      <small>題組 {{ index + 1 }}</small>
 
       <input type="text" class="title" v-model="question.Title" placeholder="問題">
       <span class="bar"></span>
@@ -83,12 +84,8 @@ export default Vue.component('Question', {
     };
   },
   computed: {
-    form() {
-      return store.state.form;
-    },
-    typeList() {
-      return store.state.typeList;
-    },
+    form: () => store.state.form,
+    typeList: () => store.state.typeList,
     currentType: {
       get() {
         return this.typeList.find(item => item.type === this.question.Type);
@@ -121,15 +118,16 @@ export default Vue.component('Question', {
       this.form.Questions.splice(this.index, 1);
     },
     switchDialog(option) {
-      store.commit('switchDialog', option);
+      const { question } = this;
+      store.commit('switchDialog', { question, option });
     },
     getGuid() {
-      function g() {
-        return Math.floor((1 + Math.random()) * 0x10000)
+      const g = () =>
+        Math.floor((1 + Math.random()) * 0x10000)
           .toString(16)
           .substring(1)
           .toUpperCase();
-      }
+
       return `${g()}${g()}-${g()}-${g()}-${g()}-${g()}${g()}${g()}`;
     },
   },

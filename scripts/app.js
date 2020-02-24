@@ -37,7 +37,7 @@ Vue.component('jun-form', {
             <Question v-for="(question, index) in form.Questions" :key="question.Guid" :question="question" :index="index" />
           </div>
 
-          <draggable v-model="form.Questions" @start="drag" @end="end" ghost-class="ghost" v-bind="dragOptions" v-else>
+          <draggable v-else v-model="form.Questions" @start="drag" @end="end" ghost-class="ghost" v-bind="dragOptions">
             <transition-group>
               <div class="drag-container" v-for="(question, index) in form.Questions" :key="question.Guid">
                 題組 {{ index + 1 }} - {{ question.Title }}
@@ -53,35 +53,27 @@ Vue.component('jun-form', {
       </div>
     </div>
   `,
-  data() {
-    return {
-      dragStatus: false,
-    };
-  },
+  data: () => ({
+    dragStatus: false,
+  }),
   computed: {
-    dragOptions() {
-      return {
-        disabled: false,
-        animation: 200,
-        ghostClass: 'ghost',
-        group: 'description',
-      };
-    },
-    form() {
-      return store.state.form;
-    },
-    dialogStatus() {
-      return store.state.dialogStatus;
-    },
+    form: () => store.state.form,
+    dialogStatus: () => store.state.dialogStatus,
+    dragOptions: () => ({
+      animation: 250,
+      disabled: false,
+      ghostClass: 'ghost',
+      group: 'description',
+    }),
   },
   methods: {
     getGuid() {
-      function g() {
-        return Math.floor((1 + Math.random()) * 0x10000)
+      const g = () =>
+        Math.floor((1 + Math.random()) * 0x10000)
           .toString(16)
           .substring(1)
           .toUpperCase();
-      }
+
       return `${g()}${g()}-${g()}-${g()}-${g()}-${g()}${g()}${g()}`;
     },
     addNewQuestion() {
@@ -144,7 +136,6 @@ Vue.component('jun-form', {
 
 const vm = new Vue({
   el: '#app',
-  store,
 });
 
 // 取得元件內的函數

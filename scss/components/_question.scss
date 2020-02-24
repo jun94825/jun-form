@@ -9,21 +9,27 @@
   position: relative;
   margin-bottom: 0.5rem;
 
-  .drag-bar {
-    @include s(100%, 0);
-    @include f-a-j(center, unset);
-    padding-bottom: 1rem;
-    flex-direction: column;
+  .details {
+    @include s(100%, auto);
+    @include f-a-j(center, space-between);
 
-    .line {
-      width: 3rem;
-      margin-bottom: 0.1875rem;
-      border-bottom: 0.125rem solid #ccc;
+    small {
+      color: #fff;
+      border-radius: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      background-color: $primary;
     }
-  }
 
-  small {
-    color: #666;
+    i {
+      cursor: pointer;
+      padding: 0.5rem;
+      background-color: #ccc;
+      border-radius: 50%;
+
+      &:hover {
+        color: #7bc235;
+      }
+    }
   }
 
   .title {
@@ -142,7 +148,7 @@
         color: #777;
         cursor: pointer;
         font-size: 1.25rem;
-        margin-left: 1.5rem;
+        margin-left: 1rem;
 
         &:hover {
           color: #ff5722;
