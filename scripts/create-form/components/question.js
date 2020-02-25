@@ -1,4 +1,4 @@
-import store from '../../store/index.js';
+import store from '/store/index.js';
 
 export default Vue.component('Question', {
   props: {
@@ -78,11 +78,9 @@ export default Vue.component('Question', {
       </div>
     </div>
   `,
-  data() {
-    return {
-      typeStatus: false,
-    };
-  },
+  data: () => ({
+    typeStatus: false,
+  }),
   computed: {
     form: () => store.state.form,
     typeList: () => store.state.typeList,
@@ -105,7 +103,7 @@ export default Vue.component('Question', {
     },
     addNewOption() {
       this.question.Options.push({
-        Guid: this.getGuid(),
+        Guid: this.$root.getGuid(),
         Value: `選項 ${this.question.Options.length + 1}`,
         Binding: [],
         Score: 0,
@@ -120,15 +118,6 @@ export default Vue.component('Question', {
     switchDialog(option) {
       const { question } = this;
       store.commit('switchDialog', { question, option });
-    },
-    getGuid() {
-      const g = () =>
-        Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1)
-          .toUpperCase();
-
-      return `${g()}${g()}-${g()}-${g()}-${g()}-${g()}${g()}${g()}`;
     },
   },
 });

@@ -1,5 +1,4 @@
-// Vuex
-import store from '../../store/index.js';
+import store from '/store/index.js';
 
 export default Vue.component('Dialog', {
   template: `
@@ -7,7 +6,7 @@ export default Vue.component('Dialog', {
       <div class="dialog">
         <p>串連題組</p>
         <p>當點選此選項時，顯示以下題組</p>
-        <v-select v-model="selected" :options="options" label="title" :reduce="title => title.guid" multiple></v-select>
+        <v-select v-model="selected" label="title" :options="options" :reduce="title => title.guid" multiple></v-select>
         <div class="btn-container">
           <div class="btn-cancel" @click="cancel">
             <span>取消</span>
@@ -35,17 +34,6 @@ export default Vue.component('Dialog', {
         }
       });
 
-      this.form.Questions.forEach((question, index) => {
-        this.cOption.Binding.forEach(guid => {
-          if (question.Guid === guid) {
-            this.selected.push({
-              title: `題組 ${index + 1}`,
-              guid: question.Guid,
-            });
-          }
-        });
-      });
-
       return options;
     },
     form: () => store.state.form,
@@ -54,12 +42,23 @@ export default Vue.component('Dialog', {
   },
   methods: {
     save() {
-      const res = this.selected.filter(item => typeof item === 'string');
-      store.commit('changeBinding', res);
+      store.commit('changeBinding', this.selected);
       store.commit('switchDialog');
     },
     cancel() {
       store.commit('switchDialog');
     },
+  },
+  created() {
+    // 爆幹牛逼好嗎
+    if (this.cOption.Binding.length > 0) {
+      this.form.Questions.forEach(question => {
+        this.cOption.Binding.forEach(guid => {
+          if (question.Guid === guid) {
+            this.selected.push(guid);
+          }
+        });
+      });
+    }
   },
 });
