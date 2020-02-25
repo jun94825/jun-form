@@ -86,6 +86,11 @@ export default Vue.component('CreateForm', {
     switchDragStatus() {
       this.dragStatus = !this.dragStatus;
     },
+    // API
+    getFormJSON: () => JSON.stringify(store.state.form),
+    renderForm(obj) {
+      store.state.form = obj;
+    },
     // 不重要
     drag() {
       console.log('Drag');
@@ -119,5 +124,11 @@ export default Vue.component('CreateForm', {
     };
 
     store.commit('createFormData', form);
+  },
+  mounted() {
+    junForm = {
+      getFormJSON: this.getFormJSON,
+      renderForm: this.renderForm,
+    };
   },
 });
