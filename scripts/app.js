@@ -1,7 +1,9 @@
+import store from '../store/index.js';
+
 import './create-form/createForm.js';
 import './render-form/renderForm.js';
 
-new Vue({
+const vm = new Vue({
   el: '#jun-form',
   methods: {
     getGuid() {
@@ -13,5 +15,10 @@ new Vue({
 
       return `${g()}${g()}-${g()}-${g()}-${g()}-${g()}${g()}${g()}`;
     },
+    getFormJSON: () => store.state.form,
   },
 });
+
+window.junForm = {
+  getFormJSON: vm.getFormJSON,
+};

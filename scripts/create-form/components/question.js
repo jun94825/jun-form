@@ -10,6 +10,7 @@ export default Vue.component('Question', {
       <div class="details">
         <small>題組 {{ index + 1 }}</small>
         <i class="fas fa-link"></i>
+        <span class="tooltip">{{ bindingText }}</span>
       </div>
 
       <input type="text" class="title" v-model="question.Title" placeholder="問題">
@@ -41,8 +42,18 @@ export default Vue.component('Question', {
             <input type="text" v-model="option.Value">
             <span class="bar"></span>
           </div>
-          <i class="fas fa-times" @click="delOption(index)"></i>
-          <i class="fas fa-link" @click="switchDialog(option)"></i>
+          <div class="fuck" v-if="form.ScoreEnable">
+            <input type="text" v-model="option.Score" @keyup="inputScore" placeholder="輸入分數">
+            <span class="bar"></span>
+          </div>
+          <div class="del-container">
+            <small>刪除選項</small>
+            <i class="fas fa-times" @click="delOption(index)"></i>
+          </div>
+          <div class="binding-container">
+            <small>串聯題組</small>
+            <i class="fas fa-link" @click="switchDialog(option)"></i>
+          </div>
         </div>
 
         <div class="option" v-else>
@@ -92,6 +103,32 @@ export default Vue.component('Question', {
         this.question.Type = value;
       },
     },
+    bindingText() {
+      let str = '';
+      let arr = [];
+
+      this.form.Questions.forEach((question, index) => {
+        question.Options.forEach(option => {
+          option.Binding.forEach(guid => {
+            if (guid === this.question.Guid) {
+              arr.push(index + 1);
+            }
+          });
+        });
+      });
+
+      if (arr.length > 0) {
+        str = '與';
+        arr.forEach(index => {
+          str += `題組${index}`;
+        });
+        str += '串連中';
+      } else {
+        str = '沒被串連啦幹';
+      }
+
+      return str;
+    },
   },
   methods: {
     up() {
@@ -118,6 +155,9 @@ export default Vue.component('Question', {
     switchDialog(option) {
       const { question } = this;
       store.commit('switchDialog', { question, option });
+    },
+    inputScore(e) {
+      e.target.value = e.target.value.replace(/[^\d]/g, '');
     },
   },
 });
