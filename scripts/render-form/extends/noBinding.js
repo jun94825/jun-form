@@ -1,10 +1,12 @@
-const dropdown_literal_date = Vue.extend({
-  props: ['data', 'index', 'ScoreEnable', 'pMode'],
-  data() {
-    return {
-      display: true,
-    };
+const noBinding = Vue.extend({
+  props: {
+    data: Object,
+    index: Number,
+    readOnly: Boolean,
   },
+  data: () => ({
+    display: true,
+  }),
   watch: {
     display() {
       if (!this.display) {
@@ -21,4 +23,4 @@ const dropdown_literal_date = Vue.extend({
   },
 });
 
-export { dropdown_literal_date };
+export { noBinding };

@@ -1,4 +1,4 @@
-import { dropdown_literal_date } from '../extends/dropdown_literal_date.js';
+import { noBinding } from '../extends/noBinding.js';
 
 export default Vue.component('dropdown', {
   template: `
@@ -6,27 +6,34 @@ export default Vue.component('dropdown', {
       <div>
         <div>
           <p class="question-title">{{ data.Title }}</p>
-          <small>*</small>
+          <small v-if="data.Required">*</small>
         </div>
 
-        <select v-model="data.Answer" @change="hello">
-          <option value="">請選擇</option>
-          <option
-            v-for="option in data.Options"
-            :key="option.Guid"
-            :value="option.Guid"
-            >{{ option.Value }}
-          </option>
-        </select>
+        <v-select
+          class="r-v-select"
+          v-model="data.Answer"
+          :options="options"
+          :reduce="title => title.code"
+          label="title"
+          :disabled="readOnly"
+        >
+        </v-select>
       </div>
     </div>
   `,
-  methods: {
-    hello() {
-      if (this.ScoreEnable && this.pMode) {
-        this.$emit('show');
-      }
+  computed: {
+    options() {
+      let list = [];
+
+      this.data.Options.forEach(option => {
+        list.push({
+          title: option.Value,
+          code: option.Guid,
+        });
+      });
+
+      return list;
     },
   },
-  extends: dropdown_literal_date,
+  extends: noBinding,
 });

@@ -1,17 +1,19 @@
-import { dropdown_literal_date } from '../extends/dropdown_literal_date.js';
+import { noBinding } from '../extends/noBinding.js';
+
+import '../../../node_modules/vue2-datepicker/index.js';
 
 export default Vue.component('date', {
   template: `
     <div class="r-question" v-if="display">
       <div>
         <p class="question-title">{{ data.Title }}</p>
-        <small>*</small>
+        <small v-if="data.Required">*</small>
       </div>
       
       <div>
-        <input type="date" v-model="data.Answer"/>
+        <date-picker v-model="data.Answer" valueType="format" :disabled="readOnly"></date-picker>
       </div>
     </div>
   `,
-  extends: dropdown_literal_date,
+  extends: noBinding,
 });

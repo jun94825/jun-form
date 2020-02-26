@@ -1,15 +1,15 @@
-import { dropdown_literal_date } from '../extends/dropdown_literal_date.js';
+import { noBinding } from '../extends/noBinding.js';
 
 export default Vue.component('number', {
   template: `
     <div class="r-question" v-if="display">
       <div>
         <p class="question-title">{{ data.Title }}</p>
-        <small>*</small>
+        <small v-if="data.Required">*</small>
       </div>
 
       <div>
-        <input type="text" v-model="data.Answer" @keyup="inputNumber" placeholder="您的回答" />
+        <input class="r-input" type="text" v-model="data.Answer" @keyup="inputNumber" :disabled="readOnly" placeholder="您的回答" />
         <div class="bar"></div>
       </div>
     </div>
@@ -19,5 +19,5 @@ export default Vue.component('number', {
       e.target.value = e.target.value.replace(/[^\d]/g, '');
     },
   },
-  extends: dropdown_literal_date,
+  extends: noBinding,
 });

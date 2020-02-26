@@ -1,70 +1,92 @@
-body {
-  padding-top: 1rem;
-  background-color: rgba(189, 189, 189, 0.75);
-}
+@import url('https://fonts.googleapis.com/css?family=Trade+Winds&display=swap');
 
-.r-header {
-  @include s(100%, auto);
-  border: $border;
-  border-radius: $radius;
-  background-color: $white;
+.container {
   position: relative;
-  margin-bottom: 1rem;
-  padding: 1.5rem 1.5rem 1rem 1.5rem;
 
-  .line {
-    @include s(100%, 0.625rem);
-    background-color: $primary;
-    border-top-left-radius: $radius;
-    border-top-right-radius: $radius;
-    top: 0;
-    left: 0;
+  .total-score {
+    top: 1rem;
+    right: 3rem;
     position: absolute;
-  }
-
-  p {
-    font-size: 2rem;
-  }
-}
-
-.r-question {
-  @include s(100%, auto);
-  border: $border;
-  border-radius: $radius;
-  background-color: $white;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-
-  .question-title {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    display: inline-block;
-  }
-
-  small {
     color: red;
+    z-index: 30678;
+    font-size: 4rem;
+    font-family: 'Trade Winds';
   }
 
-  .r-option-group {
-    display: flex;
+  .r-header {
+    @include s(100%, auto);
+    border: $border;
+    border-radius: $radius;
+    background-color: $white;
+    position: relative;
+    margin-bottom: 1rem;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
 
-    .r-option {
-      @include f-a-j(center, unset);
-      margin-right: 2rem;
+    .line {
+      @include s(100%, 0.625rem);
+      background-color: $primary;
+      border-top-left-radius: $radius;
+      border-top-right-radius: $radius;
+      top: 0;
+      left: 0;
+      position: absolute;
+    }
 
-      input {
-        cursor: pointer;
-        zoom: 150%;
-        margin-right: 0.25rem;
-      }
+    p {
+      font-size: 2rem;
     }
   }
 
-  input[type='text'] {
-    @include input(100%);
-  }
+  .r-question {
+    @include s(100%, auto);
+    border: $border;
+    border-radius: $radius;
+    background-color: $white;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    margin-bottom: 1rem;
 
-  .bar {
-    @include bar(100%, relative);
+    .question-title {
+      font-size: 1.1rem;
+      display: inline-block;
+    }
+
+    small {
+      color: red;
+    }
+
+    .r-option-group {
+      display: flex;
+      flex-wrap: wrap;
+
+      .r-option {
+        @include f-a-j(center, unset);
+        margin-right: 2rem;
+        margin-top: 1rem;
+
+        input {
+          cursor: pointer;
+          zoom: 150%;
+          margin-right: 0.25rem;
+        }
+      }
+    }
+
+    .r-input {
+      @include input(100%);
+      margin-top: 1rem;
+    }
+
+    .bar {
+      @include bar(100%, relative);
+    }
+
+    .r-v-select {
+      width: 13.125rem;
+      margin-top: 1rem;
+    }
+
+    .mx-datepicker {
+      margin-top: 1rem;
+    }
   }
 }

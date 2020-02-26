@@ -1,10 +1,11 @@
-import { radio_checkbox } from '../extends/radio_checkbox.js';
+import { haveBinding } from '../extends/haveBinding.js';
 
 export default Vue.component('checkbox', {
   watch: {
     display() {
       if (!this.display) {
         this.data.Answer = [];
+
         this.data.Options.forEach(item => {
           if (item.Binding.length > 0) {
             item.Binding.forEach(Guid => {
@@ -17,10 +18,6 @@ export default Vue.component('checkbox', {
   },
   methods: {
     checkBinding(data, item) {
-      if (this.ScoreEnable && this.pMode) {
-        this.$emit('show');
-      }
-
       // 檢查綁定控制顯示與隱藏
       if (item.Binding.length > 0) {
         item.Binding.forEach(Guid => {
@@ -39,5 +36,5 @@ export default Vue.component('checkbox', {
       }
     },
   },
-  extends: radio_checkbox,
+  extends: haveBinding,
 });

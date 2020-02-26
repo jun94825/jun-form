@@ -1,10 +1,14 @@
-const radio_checkbox = Vue.extend({
-  props: ['data', 'index', 'ScoreEnable', 'pMode'],
+const haveBinding = Vue.extend({
+  props: {
+    data: Object,
+    index: Number,
+    readOnly: Boolean,
+  },
   template: `
     <div class="r-question" v-if="display">
       <div>
         <p class="question-title">{{ data.Title }}</p>
-        <small>*</small>
+        <small v-if="data.Required">*</small>
       </div>
 
       <div class="r-option-group">
@@ -15,17 +19,16 @@ const radio_checkbox = Vue.extend({
             :value="option.Guid"
             v-model="data.Answer"
             @change="checkBinding(data, option)"
+            :disabled="readOnly"
           />
           <label :for="option.Guid">{{ option.Value }}</label>
         </div>
       </div>
     </div>
   `,
-  data() {
-    return {
-      display: true,
-    };
-  },
+  data: () => ({
+    display: true,
+  }),
   mounted() {
     eventBus.$on('connect', info => {
       if (info.Guid === this.data.Guid) {
@@ -35,4 +38,4 @@ const radio_checkbox = Vue.extend({
   },
 });
 
-export { radio_checkbox };
+export { haveBinding };

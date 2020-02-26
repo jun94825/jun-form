@@ -1,4 +1,4 @@
-import { radio_checkbox } from '../extends/radio_checkbox.js';
+import { haveBinding } from '../extends/haveBinding.js';
 
 export default Vue.component('radio', {
   watch: {
@@ -17,10 +17,6 @@ export default Vue.component('radio', {
   },
   methods: {
     checkBinding(data, item) {
-      if (this.ScoreEnable && this.pMode) {
-        this.$emit('show');
-      }
-
       // 檢查綁定控制顯示與隱藏
       if (item.Binding.length > 0) {
         item.Binding.forEach(Guid => {
@@ -29,9 +25,9 @@ export default Vue.component('radio', {
         // return false; // 增加這行遇到的原因：兩個選項綁定同個題目時，跳題效果就會消失，詳細原因有待深入研究。
         return;
       }
+
       data.Options.forEach(option => {
         if (option.Binding.length > 0 && option.Guid !== item.Guid) {
-          console.log('False');
           option.Binding.forEach(Guid => {
             eventBus.$emit('connect', { Guid, status: false });
           });
@@ -39,5 +35,5 @@ export default Vue.component('radio', {
       });
     },
   },
-  extends: radio_checkbox,
+  extends: haveBinding,
 });
