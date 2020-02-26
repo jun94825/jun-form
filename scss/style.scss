@@ -9,5 +9,11 @@
 @import 'create-form/components/_question.scss';
 @import 'create-form/components/_dialog.scss';
 
+// bootstrap
+@import 'render-form/bootstrap/_functions.scss';
+@import 'render-form/bootstrap/_variables.scss';
+@import 'render-form/bootstrap/_mixins.scss';
+@import 'render-form/bootstrap/_grid.scss';
+
 // renderForm
-// @import 'render-form/_renderForm.scss';
+@import 'render-form/_renderForm.scss';
