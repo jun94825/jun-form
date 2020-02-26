@@ -14,41 +14,33 @@ export default Vue.component('RenderForm', {
     form: {},
     totalScore: 0,
     readOnlyMode: false,
-    // Unimportant
+    // unimportant
     previewMode: false,
   }),
   template: `
     <div>
       <div class="container">
-        <div class="row">
-          <div class="col">
-
-            <h4 v-if="totalScore !== 0">得分：
-              <span>{{ totalScore }}</span>
-            </h4>
-            
-            <div>
-              <p>{{ form.Title }}</p>
-            </div>
-
-            <div>
-              <p>{{ form.Description }}</p>
-            </div>
-
-            <component
-              v-for="(item, index) in form.Questions"
-              :key="index"
-              :data="item"
-              :index="index"
-              :is="item.Type"
-              :id="item.Guid"
-              :ScoreEnable="form.ScoreEnable"
-              @show="showScore"
-              :pMode="previewMode"
-            ></component>
-
-          </div>
+        <h4 v-if="totalScore !== 0">得分：
+          <span>{{ totalScore }}</span>
+        </h4>
+        
+        <div class="r-header">
+          <div class="line"></div>
+          <p>{{ form.Title }}</p>
+          <small>{{ form.Description }}</small>
         </div>
+
+        <component
+          v-for="(item, index) in form.Questions"
+          :key="index"
+          :data="item"
+          :index="index"
+          :is="item.Type"
+          :id="item.Guid"
+          :ScoreEnable="form.ScoreEnable"
+          @show="showScore"
+          :pMode="previewMode"
+        ></component>
       </div>
     </div>
   `,
@@ -228,8 +220,14 @@ export default Vue.component('RenderForm', {
               Binding: [],
               Score: 0,
             },
+            {
+              Guid: 'F1FEEDC1-636B-234A-DEC9-B73191D1E897',
+              Value: '選項 2',
+              Binding: [],
+              Score: 0,
+            },
           ],
-          Required: false,
+          Required: true,
           Answer: [],
         },
         {
@@ -243,8 +241,14 @@ export default Vue.component('RenderForm', {
               Binding: [],
               Score: 69,
             },
+            {
+              Guid: '85942DFA-12CA-ECC5-5ED1-2C54A3238879',
+              Value: '選項 2',
+              Binding: [],
+              Score: 69,
+            },
           ],
-          Required: false,
+          Required: true,
           Answer: [],
         },
         {
@@ -258,8 +262,14 @@ export default Vue.component('RenderForm', {
               Binding: [],
               Score: 0,
             },
+            {
+              Guid: '687E2475-9661-74ED-5F4E-6C72B5443A13',
+              Value: '選項 2',
+              Binding: [],
+              Score: 0,
+            },
           ],
-          Required: false,
+          Required: true,
           Answer: [],
         },
         {
@@ -267,7 +277,7 @@ export default Vue.component('RenderForm', {
           Type: 'literal',
           Title: '簡答',
           Options: [],
-          Required: false,
+          Required: true,
           Answer: [],
         },
         {
@@ -275,7 +285,7 @@ export default Vue.component('RenderForm', {
           Type: 'date',
           Title: '日期',
           Options: [],
-          Required: false,
+          Required: true,
           Answer: [],
         },
         {
@@ -283,7 +293,7 @@ export default Vue.component('RenderForm', {
           Type: 'number',
           Title: '數字',
           Options: [],
-          Required: false,
+          Required: true,
           Answer: [],
         },
         {
@@ -291,7 +301,7 @@ export default Vue.component('RenderForm', {
           Type: 'email',
           Title: '信箱',
           Options: [],
-          Required: false,
+          Required: true,
           Answer: [],
         },
         {
@@ -299,7 +309,7 @@ export default Vue.component('RenderForm', {
           Type: 'english',
           Title: '英文',
           Options: [],
-          Required: false,
+          Required: true,
           Answer: [],
         },
       ],

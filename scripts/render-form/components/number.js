@@ -2,18 +2,22 @@ import { dropdown_literal_date } from '../extends/dropdown_literal_date.js';
 
 export default Vue.component('number', {
   template: `
-    <div class="q" v-if="display">
-      <div class="d-flex align-items-center flex-wrap">
-        <div>
-          <span v-if="data.Required" class="badge badge-danger mr-1">必填</span>
-          <h5 class="d-inline">{{ index + 1 }}. {{ data.Title }} : </h5>
-        </div>
-        <div class="i literal mt-2 mt-md-0 ml-3 ml-md-2">
-          <input type="number" class="form-control" v-model="data.Answer" />
-          <div class="line"></div>
-        </div>
+    <div class="r-question" v-if="display">
+      <div>
+        <p class="question-title">{{ data.Title }}</p>
+        <small>*</small>
+      </div>
+
+      <div>
+        <input type="text" v-model="data.Answer" @keyup="inputNumber" placeholder="您的回答" />
+        <div class="bar"></div>
       </div>
     </div>
   `,
+  methods: {
+    inputNumber(e) {
+      e.target.value = e.target.value.replace(/[^\d]/g, '');
+    },
+  },
   extends: dropdown_literal_date,
 });

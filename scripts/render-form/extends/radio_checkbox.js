@@ -1,25 +1,22 @@
 const radio_checkbox = Vue.extend({
   props: ['data', 'index', 'ScoreEnable', 'pMode'],
   template: `
-    <div class="q" v-if="display">
+    <div class="r-question" v-if="display">
       <div>
-        <span v-if="data.Required" class="badge badge-danger mr-1">必填</span>
-        <h5 class="d-inline">{{ index + 1 }}. {{ data.Title }} : </h5>
+        <p class="question-title">{{ data.Title }}</p>
+        <small>*</small>
       </div>
-      <div class="d-flex align-items-center flex-wrap">
-        <div
-          class="d-flex align-items-center mt-3"
-          v-for="(item, index) in data.Options"
-          :key="index"
-        >
+
+      <div class="r-option-group">
+        <div class="r-option" v-for="option in data.Options" :key="option.Guid">
           <input
             :type="data.Type"
-            :id="item.Guid"
-            :value="item.Guid"
+            :id="option.Guid"
+            :value="option.Guid"
             v-model="data.Answer"
-            @change="checkBinding(data, item)"
+            @change="checkBinding(data, option)"
           />
-          <label :for="item.Guid">{{ item.Value }}</label>
+          <label :for="option.Guid">{{ option.Value }}</label>
         </div>
       </div>
     </div>
