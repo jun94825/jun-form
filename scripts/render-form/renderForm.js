@@ -212,34 +212,33 @@ export default Vue.component('RenderForm', {
   `,
   watch: {
     form() {
-      // 隱藏跳題
       this.$nextTick(() => {
-        this.form.Questions.forEach(Question => {
-          if (Question.Type !== 'checkbox') {
-            Question.Options.forEach(Option => {
-              if (Question.Answer === Option.Guid) {
-                Option.Binding.forEach(Guid => {
-                  eventBus.$emit('connect', { Guid, status: true });
+        this.form.Questions.forEach(question => {
+          if (question.Type !== 'checkbox') {
+            question.Options.forEach(option => {
+              if (question.Answer === option.Guid) {
+                option.Binding.forEach(guid => {
+                  eventBus.$emit('connect', { guid, status: true });
                 });
               } else {
-                Option.Binding.forEach(Guid => {
-                  eventBus.$emit('connect', { Guid, status: false });
+                option.Binding.forEach(guid => {
+                  eventBus.$emit('connect', { guid, status: false });
                 });
               }
             });
           } else {
-            if (Question.Answer.length === 0) {
-              Question.Options.forEach(Option => {
-                Option.Binding.forEach(Guid => {
-                  eventBus.$emit('connect', { Guid, status: false });
+            if (question.Answer.length === 0) {
+              question.Options.forEach(option => {
+                option.Binding.forEach(guid => {
+                  eventBus.$emit('connect', { guid, status: false });
                 });
               });
             } else {
-              Question.Answer.forEach(guid => {
-                Question.Options.forEach(Option => {
-                  if (guid !== Option.Guid) {
-                    Option.Binding.forEach(Guid => {
-                      eventBus.$emit('connect', { Guid, status: false });
+              question.Answer.forEach(guid => {
+                question.Options.forEach(option => {
+                  if (guid !== option.Guid) {
+                    option.Binding.forEach(guid => {
+                      eventBus.$emit('connect', { guid, status: false });
                     });
                   }
                 });
@@ -266,11 +265,9 @@ export default Vue.component('RenderForm', {
         }
       });
 
-      const edited = JSON.stringify(this.form);
-
+      const arrayAnswer = JSON.stringify(this.form);
       this.form = origin;
-
-      return edited;
+      return arrayAnswer;
     },
     renderForm(obj) {
       obj.Questions.forEach(question => {
@@ -368,3 +365,7 @@ export default Vue.component('RenderForm', {
     };
   },
 });
+
+// 只需要釋出 getFormJSON 與 renderForm 即可
+// getFormJSON 裡面把 checkEmail 與 checkRequired 做掉
+// 有問題跳 alert 警告，並且回傳 undefined
