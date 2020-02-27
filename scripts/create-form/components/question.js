@@ -7,10 +7,8 @@ export default Vue.component('Question', {
   },
   template: `
     <div class="question">
-      <div class="details">
+      <div>
         <small>題組 {{ index + 1 }}</small>
-        <i class="fas fa-link"></i>
-        <span class="tooltip">{{ bindingText }}</span>
       </div>
 
       <input type="text" class="title" v-model="question.Title" placeholder="問題">
@@ -52,7 +50,8 @@ export default Vue.component('Question', {
           </div>
           <div class="binding-container">
             <small>串聯題組</small>
-            <i class="fas fa-link" @click="switchDialog(option)"></i>
+            <i v-if="option.Binding.length > 0" class="fas fa-link light" @click="switchDialog(option)"></i>
+            <i v-else class="fas fa-link" @click="switchDialog(option)"></i>
           </div>
         </div>
 
@@ -100,34 +99,13 @@ export default Vue.component('Question', {
         return this.typeList.find(item => item.type === this.question.Type);
       },
       set(value) {
+        if (
+          !(value === 'radio' || value === 'checkbox' || value === 'dropdown')
+        )
+          this.question.Options.splice(1, this.question.Options.length - 1);
+
         this.question.Type = value;
       },
-    },
-    bindingText() {
-      let str = '';
-      let arr = [];
-
-      this.form.Questions.forEach((question, index) => {
-        question.Options.forEach(option => {
-          option.Binding.forEach(guid => {
-            if (guid === this.question.Guid) {
-              arr.push(index + 1);
-            }
-          });
-        });
-      });
-
-      if (arr.length > 0) {
-        str = '與';
-        arr.forEach(index => {
-          str += `題組${index}`;
-        });
-        str += '串連中';
-      } else {
-        str = '沒被串連啦幹';
-      }
-
-      return str;
     },
   },
   methods: {

@@ -251,23 +251,33 @@ export default Vue.component('RenderForm', {
   },
   methods: {
     getFormJSON() {
-      const origin = JSON.parse(JSON.stringify(this.form));
+      if (this.checkEmail()) {
+        if (this.checkRequired()) {
+          const origin = JSON.parse(JSON.stringify(this.form));
 
-      this.form.Questions.forEach(question => {
-        if (question.Type !== 'checkbox') {
-          if (question.Answer.length > 0) {
-            const arr = [];
-            arr.push(question.Answer);
-            question.Answer = arr;
-          } else {
-            question.Answer = [];
-          }
+          this.form.Questions.forEach(question => {
+            if (question.Type !== 'checkbox') {
+              if (question.Answer.length > 0) {
+                const arr = [];
+                arr.push(question.Answer);
+                question.Answer = arr;
+              } else {
+                question.Answer = [];
+              }
+            }
+          });
+
+          const arrayAnswer = JSON.stringify(this.form);
+          this.form = origin;
+          return arrayAnswer;
+        } else {
+          window.alert('必填欄位請務必填寫');
+          return undefined;
         }
-      });
-
-      const arrayAnswer = JSON.stringify(this.form);
-      this.form = origin;
-      return arrayAnswer;
+      } else {
+        window.alert('請輸入正確的電郵格式');
+        return undefined;
+      }
     },
     renderForm(obj) {
       obj.Questions.forEach(question => {
@@ -360,12 +370,6 @@ export default Vue.component('RenderForm', {
     junForm = {
       getFormJSON: this.getFormJSON,
       renderForm: this.renderForm,
-      checkEmail: this.checkEmail,
-      checkRequired: this.checkRequired,
     };
   },
 });
-
-// 只需要釋出 getFormJSON 與 renderForm 即可
-// getFormJSON 裡面把 checkEmail 與 checkRequired 做掉
-// 有問題跳 alert 警告，並且回傳 undefined

@@ -9,44 +9,11 @@
   position: relative;
   margin-bottom: 0.5rem;
 
-  .details {
-    @include s(100%, auto);
-    @include f-a-j(center, space-between);
-    position: relative;
-
-    small {
-      color: #fff;
-      border-radius: 0.25rem;
-      padding: 0.25rem 0.5rem;
-      background-color: $primary;
-    }
-
-    i {
-      cursor: pointer;
-      padding: 0.5rem;
-      background-color: #ccc;
-      border-radius: 50%;
-
-      &:hover {
-        color: #7bc235;
-
-        + .tooltip {
-          display: block;
-        }
-      }
-    }
-
-    .tooltip {
-      display: none;
-      position: absolute;
-      top: -2.4rem;
-      right: -1.5rem;
-      background-color: #555;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      font-size: 0.9rem;
-      color: #fff;
-    }
+  small {
+    color: #fff;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background-color: $primary;
   }
 
   .title {
@@ -210,7 +177,11 @@
           }
         }
 
-        // 一生只寫得出一次
+        .light {
+          color: #7bc235;
+        }
+
+        // 一生只寫得出一次好嗎，史上最牛
         &:hover > small {
           display: block;
         }

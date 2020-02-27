@@ -5,7 +5,7 @@ export default Vue.component('Dialog', {
     <div class="mask">
       <div class="dialog">
         <p>串連題組</p>
-        <p>當點選此選項時，顯示以下題組</p>
+        <p>該選項將與以下題組串連：</p>
         <v-select v-model="selected" label="title" :options="options" :reduce="title => title.guid" multiple></v-select>
         <div class="btn-container">
           <div class="btn-cancel" @click="cancel">
