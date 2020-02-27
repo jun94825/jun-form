@@ -37,7 +37,7 @@ export default Vue.component('CreateForm', {
             <Question v-for="(question, index) in form.Questions" :key="question.Guid" :question="question" :index="index" />
           </div>
 
-          <draggable v-else v-model="form.Questions" @start="drag" @end="end" ghost-class="ghost" v-bind="dragOptions">
+          <draggable v-else v-model="form.Questions" @start="start" @end="end" ghost-class="ghost" v-bind="dragOptions">
             <transition-group>
               <div class="drag-container" v-for="(question, index) in form.Questions" :key="question.Guid">
                 題組 {{ index + 1 }} - {{ question.Title }}
@@ -87,18 +87,12 @@ export default Vue.component('CreateForm', {
     switchDragStatus() {
       this.dragStatus = !this.dragStatus;
     },
-    // API
     getFormJSON: () => JSON.stringify(store.state.form),
     renderForm(obj) {
       store.state.form = obj;
     },
-    // 不重要
-    drag() {
-      console.log('Drag');
-    },
-    end() {
-      console.log('End');
-    },
+    start() {},
+    end() {},
   },
   created() {
     const form = {

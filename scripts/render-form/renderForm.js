@@ -325,7 +325,6 @@ export default Vue.component('RenderForm', {
       return reg.test(String(email).toLowerCase());
     },
     sScore() {
-      // forEach 裡的參數得修
       if (this.form.ScoreEnable) {
         this.totalScore = 0;
 
