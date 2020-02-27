@@ -254,14 +254,14 @@ export default Vue.component('RenderForm', {
     getFormJSON() {
       const origin = JSON.parse(JSON.stringify(this.form));
 
-      this.form.Questions.forEach(item => {
-        if (item.Type !== 'checkbox') {
-          if (item.Answer.length > 0) {
+      this.form.Questions.forEach(question => {
+        if (question.Type !== 'checkbox') {
+          if (question.Answer.length > 0) {
             const arr = [];
-            arr.push(item.Answer);
-            item.Answer = arr;
+            arr.push(question.Answer);
+            question.Answer = arr;
           } else {
-            item.Answer = [];
+            question.Answer = [];
           }
         }
       });
@@ -273,12 +273,12 @@ export default Vue.component('RenderForm', {
       return edited;
     },
     renderForm(obj) {
-      obj.Questions.forEach(item => {
-        if (item.Type !== 'checkbox') {
-          if (item.Answer.length === 1) {
-            item.Answer = item.Answer[0];
+      obj.Questions.forEach(question => {
+        if (question.Type !== 'checkbox') {
+          if (question.Answer.length === 1) {
+            question.Answer = question.Answer[0];
           } else {
-            item.Answer = '';
+            question.Answer = '';
           }
         }
       });
@@ -289,58 +289,60 @@ export default Vue.component('RenderForm', {
       // 除了確認該題目是否為必填而且答案是否為空值之外
       // 如果題目是必填但沒有出現在畫面上則忽略該題
       // 沒有出現在畫面上的意思是該題有被綁定但父題選取的選項並沒有選到讓該題顯示的選項
-      const visibleQuesList = this.form.Questions.filter(question =>
+      const visibleQuestions = this.form.Questions.filter(question =>
         document.getElementById(question.Guid)
       );
 
       // 這段確認必填的方式必須修改有問題
-      return !visibleQuesList.some(
-        question => question.Required && question.Answer.length > 0
+      return !visibleQuestions.some(
+        question =>
+          question.Required &&
+          (!question.Answer || question.Answer.length === 0)
       );
     },
     checkEmail() {
-      const hello = this.form.Questions.filter(item => {
-        return item.Type === 'email';
-      });
-
       let res = true;
 
-      hello.forEach(item => {
-        if (!this.validateEmail(item.Answer)) {
-          res = false;
-        }
+      const bananas = this.form.Questions.filter(
+        question => question.Type === 'email'
+      );
+
+      bananas.forEach(banana => {
+        if (!this.validateEmail(banana.Answer)) res = false;
       });
 
       return res;
     },
     validateEmail(email) {
       const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
       return reg.test(String(email).toLowerCase());
     },
     sScore() {
+      // forEach 裡的參數得修
       if (this.form.ScoreEnable) {
         this.totalScore = 0;
 
-        const res = this.form.Questions.filter(item => {
+        const bananas = this.form.Questions.filter(question => {
           return (
-            item.Type === 'radio' ||
-            item.Type === 'checkbox' ||
-            item.Type === 'dropdown'
+            question.Type === 'radio' ||
+            question.Type === 'checkbox' ||
+            question.Type === 'dropdown'
           );
         });
 
-        res.forEach(item => {
-          if (item.Type === 'checkbox') {
-            item.Answer.forEach(a => {
-              item.Options.forEach(b => {
+        bananas.forEach(banana => {
+          if (banana.Type === 'checkbox') {
+            banana.Answer.forEach(a => {
+              banana.Options.forEach(b => {
                 if (a === b.Guid) {
                   this.totalScore += parseInt(b.Score);
                 }
               });
             });
           } else {
-            item.Options.forEach(i => {
-              if (item.Answer === i.Guid) {
+            banana.Options.forEach(i => {
+              if (banana.Answer === i.Guid) {
                 this.totalScore += parseInt(i.Score);
               }
             });
