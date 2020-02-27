@@ -300,7 +300,6 @@ export default Vue.component('RenderForm', {
         document.getElementById(question.Guid)
       );
 
-      // 這段確認必填的方式必須修改有問題
       return !visibleQuestions.some(
         question =>
           question.Required &&
@@ -330,34 +329,32 @@ export default Vue.component('RenderForm', {
       if (this.form.ScoreEnable) {
         this.totalScore = 0;
 
-        const bananas = this.form.Questions.filter(question => {
-          return (
+        const bananas = this.form.Questions.filter(
+          question =>
             question.Type === 'radio' ||
             question.Type === 'checkbox' ||
             question.Type === 'dropdown'
-          );
-        });
+        );
 
         bananas.forEach(banana => {
           if (banana.Type === 'checkbox') {
-            banana.Answer.forEach(a => {
-              banana.Options.forEach(b => {
-                if (a === b.Guid) {
-                  this.totalScore += parseInt(b.Score);
+            banana.Answer.forEach(answer => {
+              banana.Options.forEach(option => {
+                if (answer === option.Guid) {
+                  this.totalScore += parseInt(option.Score);
                 }
               });
             });
           } else {
-            banana.Options.forEach(i => {
-              if (banana.Answer === i.Guid) {
-                this.totalScore += parseInt(i.Score);
+            banana.Options.forEach(option => {
+              if (banana.Answer === option.Guid) {
+                this.totalScore += parseInt(option.Score);
               }
             });
           }
         });
       } else {
-        console.error('該表單未開啟計分模式');
-        return false;
+        window.alert('該表單未開啟計分模式');
       }
     },
   },

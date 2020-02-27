@@ -1,4 +1,4 @@
-import store from '/store/index.js';
+import store from '../../../store/index.js';
 
 export default Vue.component('Question', {
   props: {
@@ -41,7 +41,7 @@ export default Vue.component('Question', {
             <span class="bar"></span>
           </div>
           <div class="fuck" v-if="form.ScoreEnable">
-            <input type="text" v-model="option.Score" @keyup="inputScore" placeholder="輸入分數">
+            <input type="text" v-model="option.Score" @keyup="limitNumber" placeholder="輸入分數">
             <span class="bar"></span>
           </div>
           <div class="del-container">
@@ -101,8 +101,10 @@ export default Vue.component('Question', {
       set(value) {
         if (
           !(value === 'radio' || value === 'checkbox' || value === 'dropdown')
-        )
+        ) {
           this.question.Options.splice(1, this.question.Options.length - 1);
+          this.question.Options[0].Binding = [];
+        }
 
         this.question.Type = value;
       },
@@ -134,7 +136,7 @@ export default Vue.component('Question', {
       const { question } = this;
       store.commit('switchDialog', { question, option });
     },
-    inputScore(e) {
+    limitNumber(e) {
       e.target.value = e.target.value.replace(/[^\d]/g, '');
     },
   },

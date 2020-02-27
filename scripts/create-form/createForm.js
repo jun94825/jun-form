@@ -1,4 +1,4 @@
-import store from '/store/index.js';
+import store from '../../store/index.js';
 
 import './components/title.js';
 import './components/question.js';

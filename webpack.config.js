@@ -1,13 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  context: path.resolve(__dirname, 'js'),
+  context: path.resolve(__dirname, 'scripts'),
   entry: {
-    index: './index.js',
+    index: './app.js',
   },
   output: {
-    path: path.resolve(__dirname, 'js'),
-    filename: './index.bundle.js',
+    path: path.resolve(__dirname, 'scripts'),
+    filename: './app.bundle.js',
   },
   module: {
     rules: [
