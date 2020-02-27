@@ -7,236 +7,169 @@ import './components/number.js';
 import './components/email.js';
 import './components/english.js';
 
-const form1 = {
-  Guid: '10E1F831-12A9-5071-5974-CF39B36C2897',
-  Title: '無標題表單',
-  Description: '我是說明啦乾',
-  Questions: [
-    {
-      Guid: '932B5B39-7C2D-762D-A129-AC6F539A9255',
-      Title: '單選題',
-      Type: 'radio',
-      Options: [
-        {
-          Guid: 'F1FEEDC1-636B-234A-DEC9-B73191D1E899',
-          Value: '選項 1',
-          Binding: [],
-          Score: 0,
-        },
-        {
-          Guid: 'F1FEEDC1-636B-234A-DEC9-B73191D1E897',
-          Value: '選項 2',
-          Binding: [],
-          Score: 0,
-        },
-      ],
-      Required: true,
-      Answer: [],
-    },
-    {
-      Guid: 'F2A67B08-FD82-D5AC-838F-BB020CBA4C9E',
-      Type: 'checkbox',
-      Title: '複選題',
-      Options: [
-        {
-          Guid: '95942DFA-12CA-ECC5-5ED1-2C54A3238879',
-          Value: '選項 1',
-          Binding: [],
-          Score: 69,
-        },
-        {
-          Guid: '85942DFA-12CA-ECC5-5ED1-2C54A3238879',
-          Value: '選項 2',
-          Binding: [],
-          Score: 69,
-        },
-      ],
-      Required: true,
-      Answer: [],
-    },
-    {
-      Guid: 'F1CBC1BE-409B-0CBC-3F6A-5F905A778C06',
-      Type: 'dropdown',
-      Title: '下拉選單',
-      Options: [
-        {
-          Guid: '187E2475-9662-74ED-5F4E-6C72B5443A13',
-          Value: '安安 1',
-          Binding: [],
-          Score: 0,
-        },
-        {
-          Guid: '287E2475-9661-74ED-5F4E-6C72B5443A13',
-          Value: '你好 2',
-          Binding: [],
-          Score: 0,
-        },
-        {
-          Guid: '387E3475-9661-74ED-5F4E-6C72B5443A13',
-          Value: '幾歲 3',
-          Binding: [],
-          Score: 0,
-        },
-      ],
-      Required: true,
-      Answer: [],
-    },
-    {
-      Guid: 'B3168FC1-CE21-D252-D619-53BC1356568D',
-      Type: 'literal',
-      Title: '簡答',
-      Options: [],
-      Required: true,
-      Answer: [],
-    },
-    {
-      Guid: '0D323ECC-3FF4-92F3-E72E-6B8D09D12BA0',
-      Type: 'date',
-      Title: '日期',
-      Options: [],
-      Required: true,
-      Answer: [],
-    },
-    {
-      Guid: '9F4E6DA0-9C7A-0DE2-6533-3ABCA5152D4B',
-      Type: 'number',
-      Title: '數字',
-      Options: [],
-      Required: true,
-      Answer: [],
-    },
-    {
-      Guid: 'CE47293C-8D50-6AA4-05CB-93145FECE212',
-      Type: 'email',
-      Title: '信箱',
-      Options: [],
-      Required: true,
-      Answer: [],
-    },
-    {
-      Guid: '85EE85B8-C4DB-87FB-0341-A3B2CBD45635',
-      Type: 'english',
-      Title: '英文',
-      Options: [],
-      Required: true,
-      Answer: [],
-    },
-  ],
+const formDemo = {
+  Guid: 'F9CB0141-88EC-2C59-0E33-6710FFFE641B',
+  Title: '測試表單',
+  Description: '我是說明',
   ScoreEnable: true,
-};
-
-const form2 = {
-  Guid: 'BE14E49C-9609-20FC-304F-0E2ED2EDD19F',
-  Title: '無標題表單',
-  Description: '我是說明啦乾',
   Questions: [
     {
-      Guid: '0B9F72D5-4251-88B1-B886-52BC7ACA4523',
+      Guid: '33406B2E-F83F-2671-A2DB-94CE99BD1525',
       Title: '安安',
       Type: 'radio',
       Options: [
         {
-          Guid: 'E7F3FF7C-22C2-B3E8-10F0-8928A2C14F3A',
+          Guid: '5F8DB917-3CF4-B551-3F54-E4B9E5C68BE6',
           Value: '選項 1',
           Binding: [],
           Score: '1',
         },
         {
-          Guid: 'AC4700CE-93B9-35B4-14A2-2E8571140F3B',
+          Guid: '3C24FC97-371E-24A0-708D-0923454DF686',
           Value: '選項 2',
-          Binding: ['F47B97F5-27F2-9E97-CE77-6996E27DB600'],
+          Binding: ['6DC102E3-D372-E398-A491-52D503BEBFB4'],
           Score: '2',
         },
         {
-          Guid: 'C1346526-503C-8FBC-211F-C03BE34941D3',
-          Value: '選項 3',
-          Binding: [],
-          Score: '3',
-        },
-        {
-          Guid: 'C1346516-503C-8FBC-211F-C03BE34941D3',
-          Value: '選項 4',
-          Binding: [],
-          Score: '4',
-        },
-        {
-          Guid: 'C1346516-503C-8FBC-211F-C04BE34941D3',
-          Value: '選項 5',
-          Binding: [],
-          Score: '5',
-        },
-      ],
-      Required: true,
-      Answer: ['C1346516-503C-8FBC-211F-C04BE34941D3'],
-    },
-    {
-      Guid: 'F47B97F5-27F2-9E97-CE77-6996E27DB600',
-      Type: 'dropdown',
-      Title: '你好',
-      Options: [
-        {
-          Guid: '20F25594-A1A5-5B4C-1445-9FC3223D7D17',
-          Value: '選項 1',
-          Binding: [],
-          Score: '1',
-        },
-        {
-          Guid: 'FD9DB399-336E-F0A2-F6C0-F79BA732F270',
-          Value: '選項 2',
-          Binding: [],
-          Score: '2',
-        },
-        {
-          Guid: 'ACCA7223-9EE0-4A88-199C-F1A93C147793',
+          Guid: '4BD3BB99-ADFF-4903-8BD0-9CD42F413C7B',
           Value: '選項 3',
           Binding: [],
           Score: '3',
         },
       ],
       Required: true,
-      Answer: [],
+      Answer: ['3C24FC97-371E-24A0-708D-0923454DF686'],
     },
     {
-      Guid: 'D65436EA-9720-3308-3DCE-8C49442CAC1C',
-      Type: 'date',
-      Title: '幾歲',
-      Options: [],
-      Required: false,
-      Answer: [],
-    },
-    {
-      Guid: '3618D1C7-49CF-159F-4F23-2311CDB97B8E',
+      Guid: '6DC102E3-D372-E398-A491-52D503BEBFB4',
+      Title: '我是',
       Type: 'checkbox',
-      Title: '住哪',
       Options: [
         {
-          Guid: 'A29C48FC-B41E-5CB9-FD1A-82CBBAFB8E66',
+          Guid: '6259C814-331B-EA87-C022-B1970490E53F',
           Value: '選項 1',
           Binding: [],
           Score: '1',
         },
         {
-          Guid: '8BB7B3DE-067F-3649-4954-D295FC6F056F',
+          Guid: 'DFDD205E-0C45-996F-BEE7-765A431F2288',
           Value: '選項 2',
           Binding: [],
           Score: '2',
         },
         {
-          Guid: '0EED7BD6-2879-94B5-156B-FF3875018DB0',
+          Guid: '4B5F7D0B-31D6-7976-64B2-DB8E20080F2B',
+          Value: '選項 3',
+          Binding: ['B82E1552-8DEE-25F1-C90B-1ADCD8C4E281'],
+          Score: '3',
+        },
+      ],
+      Required: true,
+      Answer: ['4B5F7D0B-31D6-7976-64B2-DB8E20080F2B'],
+    },
+    {
+      Guid: 'B82E1552-8DEE-25F1-C90B-1ADCD8C4E281',
+      Title: '測試',
+      Type: 'dropdown',
+      Options: [
+        {
+          Guid: 'B11DA089-DD73-E30F-4CA5-8A7163C4917F',
+          Value: '選項 1',
+          Binding: [],
+          Score: '1',
+        },
+        {
+          Guid: '9E1EDC1B-B885-A8E8-FE2B-4E08ECEF4A0F',
+          Value: '選項 2',
+          Binding: [],
+          Score: '2',
+        },
+        {
+          Guid: 'E1A3916D-2089-4C53-56BD-0FDA9C74DC1C',
           Value: '選項 3',
           Binding: [],
           Score: '3',
         },
       ],
       Required: true,
-      Answer: [
-        '8BB7B3DE-067F-3649-4954-D295FC6F056F',
-        '0EED7BD6-2879-94B5-156B-FF3875018DB0',
-        'A29C48FC-B41E-5CB9-FD1A-82CBBAFB8E66',
+      Answer: ['B11DA089-DD73-E30F-4CA5-8A7163C4917F'],
+    },
+    {
+      Guid: 'DF42A72E-5F8A-22FE-F452-213788E27508',
+      Title: '表單',
+      Type: 'literal',
+      Options: [
+        {
+          Guid: 'CCEF631B-F25A-3079-7612-BCE22D5846F4',
+          Value: '選項 1',
+          Binding: [],
+          Score: 0,
+        },
       ],
+      Required: false,
+      Answer: ['aaa'],
+    },
+    {
+      Guid: 'E0A71B07-A6BD-434C-60DF-E32F12EFA339',
+      Title: '今晚',
+      Type: 'date',
+      Options: [
+        {
+          Guid: '130BB6E5-866E-2CD3-3159-0EB536EC5CDB',
+          Value: '選項 1',
+          Binding: [],
+          Score: 0,
+        },
+      ],
+      Required: true,
+      Answer: ['2020-02-28'],
+    },
+    {
+      Guid: '8DF87FBC-478C-0CAB-AB58-79819F884FFC',
+      Title: '就吃',
+      Type: 'number',
+      Options: [
+        {
+          Guid: '257E9244-F2AB-9A9B-A849-387B3F28D4C5',
+          Value: '選項 1',
+          Binding: [],
+          Score: 0,
+        },
+      ],
+      Required: false,
+      Answer: ['666'],
+    },
+    {
+      Guid: '52AE588E-5FF2-7D76-63F0-A479C21DB4B1',
+      Title: '豬排',
+      Type: 'email',
+      Options: [
+        {
+          Guid: '14641BBA-5B10-10C6-3950-49DFADD266D0',
+          Value: '選項 1',
+          Binding: [],
+          Score: 0,
+        },
+      ],
+      Required: false,
+      Answer: ['bbb'],
+    },
+    {
+      Guid: '7011E9EA-CE72-0BB1-2028-C45D08414862',
+      Title: '飯吧',
+      Type: 'english',
+      Options: [
+        {
+          Guid: 'D5CDE422-F297-E7FC-AE11-EE0A1826E6A5',
+          Value: '選項 1',
+          Binding: [],
+          Score: 0,
+        },
+      ],
+      Required: false,
+      Answer: ['Hello'],
     },
   ],
-  ScoreEnable: true,
 };
 
 export default Vue.component('RenderForm', {
@@ -420,7 +353,7 @@ export default Vue.component('RenderForm', {
     },
   },
   created() {
-    this.renderForm(form2);
+    this.renderForm(formDemo);
   },
   mounted() {
     if (this.showScore) this.sScore();

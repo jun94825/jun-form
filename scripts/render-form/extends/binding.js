@@ -1,4 +1,4 @@
-const haveBinding = Vue.extend({
+const binding = Vue.extend({
   props: {
     data: Object,
     index: Number,
@@ -31,11 +31,9 @@ const haveBinding = Vue.extend({
   }),
   mounted() {
     eventBus.$on('connect', info => {
-      if (info.Guid === this.data.Guid) {
-        this.display = info.status;
-      }
+      if (info.Guid === this.data.Guid) this.display = info.status;
     });
   },
 });
 
-export { haveBinding };
+export { binding };

@@ -1,4 +1,4 @@
-import { haveBinding } from '../extends/haveBinding.js';
+import { binding } from '../extends/binding.js';
 
 export default Vue.component('radio', {
   watch: {
@@ -35,5 +35,5 @@ export default Vue.component('radio', {
       });
     },
   },
-  extends: haveBinding,
+  extends: binding,
 });

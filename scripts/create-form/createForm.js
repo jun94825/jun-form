@@ -80,6 +80,7 @@ export default Vue.component('CreateForm', {
             Score: 0,
           },
         ],
+        Answer: [],
         Required: false,
       });
     },
@@ -118,6 +119,7 @@ export default Vue.component('CreateForm', {
               Score: 0,
             },
           ],
+          Answer: [],
           Required: false,
         },
       ],

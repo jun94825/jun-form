@@ -1,11 +1,10 @@
-import { haveBinding } from '../extends/haveBinding.js';
+import { binding } from '../extends/binding.js';
 
 export default Vue.component('checkbox', {
   watch: {
     display() {
       if (!this.display) {
         this.data.Answer = [];
-
         this.data.Options.forEach(item => {
           if (item.Binding.length > 0) {
             item.Binding.forEach(Guid => {
@@ -18,7 +17,7 @@ export default Vue.component('checkbox', {
   },
   methods: {
     checkBinding(data, item) {
-      // 檢查綁定控制顯示與隱藏
+      // 檢查綁定 & 控制顯示與隱藏
       if (item.Binding.length > 0) {
         item.Binding.forEach(Guid => {
           if (data.Answer.length === 0) {
@@ -36,5 +35,5 @@ export default Vue.component('checkbox', {
       }
     },
   },
-  extends: haveBinding,
+  extends: binding,
 });

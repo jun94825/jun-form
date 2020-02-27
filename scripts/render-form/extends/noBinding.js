@@ -9,16 +9,12 @@ const noBinding = Vue.extend({
   }),
   watch: {
     display() {
-      if (!this.display) {
-        this.data.Answer = '';
-      }
+      if (!this.display) this.data.Answer = '';
     },
   },
   mounted() {
     eventBus.$on('connect', info => {
-      if (info.Guid === this.data.Guid) {
-        this.display = info.status;
-      }
+      if (info.Guid === this.data.Guid) this.display = info.status;
     });
   },
 });
