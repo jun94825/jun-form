@@ -82,7 +82,7 @@ junForm.renderForm    | Object | -    | 將數據渲染回畫面     |
 - 渲染表單
 
 ```html
-<render-form :show-score="false" :read-only="false" />
+<render-form :show-score="boolean" :read-only="boolean" />
 ```
 
 API                   | 參數   | 回傳  | 用途            |
