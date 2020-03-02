@@ -1,4 +1,4 @@
-## 必要檔案
+## # 必要檔案
 
 CSS：
   - css/style.css
@@ -15,7 +15,7 @@ JavaScript：
 Font Awsome：
   - <script src="https://kit.fontawesome.com/b5bdf28be2.js" crossorigin="anonymous"></script>
   
-## 載入順序
+## # 載入順序
 
 ```html
 <head>
@@ -54,7 +54,7 @@ Font Awsome：
 - 載入路徑請依照您的項目自行調整
 - 若您的項目中已存在相同的必要檔案則可忽略，但上述三點請務必遵循
 
-## 編譯指令
+## # 編譯指令
 
 若您有需要對 app.js 做修改，請在修改後於終端機（路徑為當前項目）鍵入
 
@@ -66,7 +66,7 @@ app.bundle.js 方可完成更新
 
 - 請勿隨意更改 scripts 資料夾名稱以及 app.js 內引用元件的路徑，否則 webpack.config.js 也得一併修改
 
-## 元件
+## # 元件
 
 - 建立表單
 
