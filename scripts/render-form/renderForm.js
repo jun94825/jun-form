@@ -29,7 +29,7 @@ export default Vue.component('RenderForm', {
         
         <div class="r-header">
           <p class="no-data" v-if="JSON.stringify(form) === '{}'">No data.</p>
-          
+
           <div class="line"></div>
           <p>{{ form.Title }}</p>
           <small>{{ form.Description }}</small>
@@ -130,9 +130,12 @@ export default Vue.component('RenderForm', {
       this.form = obj;
     },
     checkRequired() {
-      // 除了確認該題目是否為必填而且答案是否為空值之外
-      // 如果題目是必填但沒有出現在畫面上則忽略該題
-      // 沒有出現在畫面上的意思是該題有被綁定但父題選取的選項並沒有選到讓該題顯示的選項
+      /* 
+        除了確認該題是否為必填且答案是否為空值外
+        若該題是必填但並無顯示於畫面上則忽略該題
+        沒有顯示於畫面上的確切意思是
+        該題有被綁定但綁定該題的選項並沒有被勾選
+      */
       const visibleQuestions = this.form.Questions.filter(question =>
         document.getElementById(question.Guid)
       );

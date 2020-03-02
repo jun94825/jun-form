@@ -17,12 +17,12 @@ export default Vue.component('radio', {
   },
   methods: {
     checkBinding(data, item) {
-      // 檢查綁定控制顯示與隱藏
+      // 檢查綁定 & 控制顯示與隱藏
       if (item.Binding.length > 0) {
         item.Binding.forEach(Guid => {
           eventBus.$emit('connect', { Guid, status: true });
         });
-        // return false; // 增加這行遇到的原因：兩個選項綁定同個題目時，跳題效果就會消失，詳細原因有待深入研究。
+        // return false; // 當初增加這行的原因好像是因為 2 個選項綁定同個題目時，跳題效果會消失，但太久了已不可考呵呵呵：）
         return;
       }
 
