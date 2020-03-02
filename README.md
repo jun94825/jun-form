@@ -80,7 +80,7 @@ junForm.renderForm    | Object | -    | 將數據渲染回畫面     |
 ## 藉由已存在的數據渲染給使用者填寫的表單
 
 ```html
-<render-form />
+<render-form :show-score="false" :read-only="false" />
 ```
 
 API                   | 參數   | 回傳  | 用途            |
@@ -88,7 +88,7 @@ API                   | 參數   | 回傳  | 用途            |
 junForm.getFormJSON   | -      | JSON | 取得該表單的 JSON 數據，該函數會一併驗證信箱及必填項目，若驗證失敗即跳出相對應的警告視窗及回傳 `undefined`，否則您將得到您期望的 JSON 數據 |
 junForm.renderForm    | Object | -    | 將數據渲染回畫面 |
 
-### Option
+### Options
 
 參數       | 類型     | 默認  | 用途                                                                                    |
 -----------|---------|-------|-----------------------------------------------------------------------------------------|
