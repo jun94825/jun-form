@@ -26,7 +26,7 @@ export default Vue.component('CreateForm', {
           </div>
           <div class="confirm">
             <i class="fas fa-check"></i>
-            <p>完成編輯</p>
+            <p>完成</p>
           </div>
         </div>
 

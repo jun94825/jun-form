@@ -14,7 +14,7 @@
 #main {
   @include s(100%, auto);
   @include f-a-j(center, unset);
-  min-height: 100vh;
+  // min-height: 100vh;
   flex-direction: column;
   // background-color: rgba($color: $bg-color, $alpha: 0.75);
 
@@ -67,7 +67,7 @@
     @include f-a-j(center, center);
     color: $white;
     cursor: pointer;
-    margin-bottom: 5rem;
+    // margin-bottom: 5rem;
     border-radius: $radius;
     background-color: $primary;
 
