@@ -51,8 +51,8 @@ Font Awsome：
 - app.js 是最後一支載入的 js
 
 備註：
-1. 載入路徑請依照您的項目自行調整
-2. 若您的項目中已存在相同的必要檔案則可忽略，但上述三點請務必遵循
+- 載入路徑請依照您的項目自行調整
+- 若您的項目中已存在相同的必要檔案則可忽略，但上述三點請務必遵循
 
 ## 編譯指令
 
@@ -60,6 +60,37 @@ Font Awsome：
 
     npm run deploy
 
-app.bundle.js 即可完成更新
+app.bundle.js 方可完成更新
 
-請勿隨意更改 scripts 資料夾名稱以及 app.js 內引用元件的路徑，否則 webpack.config.js 也得一併修改
+注意：
+
+- 請勿隨意更改 scripts 資料夾名稱以及 app.js 內引用元件的路徑，否則 webpack.config.js 也得一併修改
+
+## 建立表單
+
+```html
+<create-form />
+```
+
+API                   | 參數   | 回傳  | 用途                |
+----------------------|--------|------|---------------------|
+junForm.getFormJSON   | -      | JSON | 取得該表單的 JSON 數據 |
+junForm.renderForm    | Object | -    | 將數據渲染回畫面     |
+
+## 藉由已存在的數據渲染給使用者填寫的表單
+
+```html
+<render-form />
+```
+
+API                   | 參數   | 回傳  | 用途            |
+----------------------|--------|------|-----------------|
+junForm.getFormJSON   | -      | JSON | 取得該表單的 JSON 數據，該函數會一併驗證信箱及必填項目，若驗證失敗即跳出相對應的警告視窗及回傳 `undefined`，否則您將得到您期望的 JSON 數據 |
+junForm.renderForm    | Object | -    | 將數據渲染回畫面 |
+
+### Option
+
+參數       | 類型     | 默認  | 用途                                                                                    |
+-----------|---------|-------|-----------------------------------------------------------------------------------------|
+show-score | boolean | false | 顯示該表單分數，若 JSON 數據裡的 `ScoreEnable` 屬性為 `false` 則會跳出警告視窗，然後不會作動 |
+ready-only | boolean | false | 唯讀模式，該表單的所有輸入框都將被禁用                                                     |
