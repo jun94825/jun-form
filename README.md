@@ -66,7 +66,9 @@ app.bundle.js 方可完成更新
 
 - 請勿隨意更改 scripts 資料夾名稱以及 app.js 內引用元件的路徑，否則 webpack.config.js 也得一併修改
 
-## 建立表單
+## 元件
+
+- 建立表單
 
 ```html
 <create-form />
@@ -77,7 +79,7 @@ API                   | 參數   | 回傳  | 用途                |
 junForm.getFormJSON   | -      | JSON | 取得該表單的 JSON 數據 |
 junForm.renderForm    | Object | -    | 將數據渲染回畫面     |
 
-## 藉由已存在的數據渲染給使用者填寫的表單
+- 渲染表單
 
 ```html
 <render-form :show-score="false" :read-only="false" />
