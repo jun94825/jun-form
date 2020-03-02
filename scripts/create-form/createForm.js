@@ -14,9 +14,9 @@ export default Vue.component('CreateForm', {
     <div>
       <Dialog v-if="dialogStatus"></Dialog>
       
-      <div id="header">
+      <!-- <div id="header">
         <p>Jun Form</p>
-      </div>
+      </div> -->
       
       <div id="main">
         <div class="functions">
