@@ -1,7 +1,5 @@
 import { noBinding } from '../extends/noBinding.js';
 
-import '../../../node_modules/vue2-datepicker/index.js';
-
 export default Vue.component('date', {
   template: `
     <div class="r-question" v-if="display">
