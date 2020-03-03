@@ -82,10 +82,10 @@ app.bundle.js 方可完成更新
 
 ### APIs
 
-| Function                  | Parameter | Return | Feature              |
-|:--------------------------|:---------:|:------:|:---------------------|
-| `junForm.getFormJSON()`   | -         | JSON   | 取得 JSON |
-| `junForm.renderForm(obj)` | Object    | -      | 將數據渲染回畫面       |
+| Function                  | Parameter | Return | Feature         |
+|:--------------------------|:---------:|:------:|:----------------|
+| `junForm.getFormJSON()`   | -         | JSON   | 取得 JSON       |
+| `junForm.renderForm(obj)` | Object    | -      | 將數據渲染回畫面 |
 
 - 渲染表單
 
@@ -104,5 +104,5 @@ app.bundle.js 方可完成更新
 
 | Function                 | Parameter | Return | Feature        |
 |:-------------------------|:---------:|:------:|:---------------|
-| `junForm.getFormJSON()`  | -         | JSON   | 取得 JSON ，該函數會一併驗證信箱及必填項目，若驗證失敗即跳出警告視窗及回傳 `undefined`，否則您將得到您期望的 JSON 數據 |
+| `junForm.getFormJSON()`  | -         | JSON   | 取得 JSON ，該函數會一併驗證信箱及必填項目，若驗證失敗即跳出警告視窗及回傳 `undefined`，否則您將得到您期望的 JSON |
 | `junForm.renderForm(obj)`| Object    | -      | 將數據渲染回畫面 |
