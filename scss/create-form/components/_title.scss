@@ -1,5 +1,5 @@
 .title-c {
-  @include s(100%, 11.25rem);
+  @include s(100%, auto);
   @include f-a-j(center, unset);
   padding: 1.5rem;
   border: $border;

@@ -50,32 +50,32 @@ export default Vue.component('RenderForm', {
   watch: {
     form() {
       this.$nextTick(() => {
-        this.form.Questions.forEach(question => {
-          if (question.Type !== 'checkbox') {
-            question.Options.forEach(option => {
-              if (question.Answer === option.Guid) {
-                option.Binding.forEach(guid => {
-                  eventBus.$emit('connect', { guid, status: true });
+        this.form.Questions.forEach(Question => {
+          if (Question.Type !== 'checkbox') {
+            Question.Options.forEach(Option => {
+              if (Question.Answer === Option.Guid) {
+                Option.Binding.forEach(Guid => {
+                  eventBus.$emit('connect', { Guid, status: true });
                 });
               } else {
-                option.Binding.forEach(guid => {
-                  eventBus.$emit('connect', { guid, status: false });
+                Option.Binding.forEach(Guid => {
+                  eventBus.$emit('connect', { Guid, status: false });
                 });
               }
             });
           } else {
-            if (question.Answer.length === 0) {
-              question.Options.forEach(option => {
-                option.Binding.forEach(guid => {
-                  eventBus.$emit('connect', { guid, status: false });
+            if (Question.Answer.length === 0) {
+              Question.Options.forEach(Option => {
+                Option.Binding.forEach(Guid => {
+                  eventBus.$emit('connect', { Guid, status: false });
                 });
               });
             } else {
-              question.Answer.forEach(guid => {
-                question.Options.forEach(option => {
-                  if (guid !== option.Guid) {
-                    option.Binding.forEach(guid => {
-                      eventBus.$emit('connect', { guid, status: false });
+              Question.Answer.forEach(guid => {
+                Question.Options.forEach(Option => {
+                  if (guid !== Option.Guid) {
+                    Option.Binding.forEach(Guid => {
+                      eventBus.$emit('connect', { Guid, status: false });
                     });
                   }
                 });
@@ -128,6 +128,7 @@ export default Vue.component('RenderForm', {
       });
 
       this.form = obj;
+      if (this.showScore && this.form.ScoreEnable) this.sScore();
     },
     checkRequired() {
       /* 
@@ -198,8 +199,6 @@ export default Vue.component('RenderForm', {
     },
   },
   mounted() {
-    if (this.showScore) this.sScore();
-
     junForm = {
       getFormJSON: this.getFormJSON,
       renderForm: this.renderForm,

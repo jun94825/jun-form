@@ -32,26 +32,26 @@ export default Vue.component('Question', {
       </div>
 
       <div class="options">
-        <div class="option" v-for="(option, index) in question.Options" :key="index"
-          v-if="question.Type === 'radio' || question.Type === 'checkbox' || question.Type === 'dropdown'"
-        >
-          <i :class="currentType.class"></i>
-          <div class="shit">
-            <input type="text" v-model="option.Value">
-            <span class="bar"></span>
-          </div>
-          <div class="fuck" v-if="form.ScoreEnable">
-            <input type="text" v-model="option.Score" @keyup="limitNumber" placeholder="輸入分數">
-            <span class="bar"></span>
-          </div>
-          <div class="del-container">
-            <small>刪除選項</small>
-            <i class="fas fa-times" @click="delOption(index)"></i>
-          </div>
-          <div class="binding-container">
-            <small>串聯題組</small>
-            <i v-if="option.Binding.length > 0" class="fas fa-link light" @click="switchDialog(option)"></i>
-            <i v-else class="fas fa-link" @click="switchDialog(option)"></i>
+        <div v-if="question.Type === 'radio' || question.Type === 'checkbox' || question.Type === 'dropdown'">
+          <div class="option" v-for="(option, index) in question.Options" :key="index">
+            <i :class="currentType.class"></i>
+            <div class="shit">
+              <input type="text" v-model="option.Value">
+              <span class="bar"></span>
+            </div>
+            <div class="fuck" v-if="form.ScoreEnable">
+              <input type="text" v-model="option.Score" @keyup="limitNumber" placeholder="輸入分數">
+              <span class="bar"></span>
+            </div>
+            <div class="del-container">
+              <small>刪除選項</small>
+              <i class="fas fa-times" @click="delOption(index)"></i>
+            </div>
+            <div class="binding-container" v-if="question.Type !== 'dropdown'">
+              <small>串聯題組</small>
+              <i v-if="option.Binding.length > 0" class="fas fa-link light" @click="switchDialog(option)"></i>
+              <i v-else class="fas fa-link" @click="switchDialog(option)"></i>
+            </div>
           </div>
         </div>
 
@@ -117,6 +117,18 @@ export default Vue.component('Question', {
     down(question) {
       this.typeStatus = false;
       this.currentType = question.type;
+
+      if (
+        !(
+          this.currentType.type === 'radio' ||
+          this.currentType.type === 'checkbox' ||
+          this.currentType.type == 'dropdown'
+        )
+      ) {
+        this.question.Options[0].Value = '';
+      } else {
+        this.question.Options[0].Value = '選項 1';
+      }
     },
     addNewOption() {
       this.question.Options.push({
