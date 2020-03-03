@@ -19,7 +19,7 @@
   // background-color: rgba($color: $bg-color, $alpha: 0.75);
 
   .functions {
-    @include s(48.125rem, auto);
+    @include s(100%, auto);
     @include f-a-j(center, flex-end);
     margin: 0.5rem 0;
 
@@ -49,7 +49,7 @@
   }
 
   #form-editor {
-    @include s(48.125rem, auto);
+    @include s(100%, auto);
 
     .drag-container {
       @include s(100%, auto);
@@ -64,7 +64,7 @@
   }
 
   .add-new-question {
-    @include s(48.125rem, 3.125rem);
+    @include s(100%, 3.125rem);
     @include f-a-j(center, center);
     color: $white;
     cursor: pointer;
