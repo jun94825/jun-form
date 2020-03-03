@@ -77,15 +77,15 @@ app.bundle.js 方可完成更新
 ### Options
 
 | Attribute   | Type    | Default | Feature                         |
-|:-----------:|:-------:|:-------:|:-------------------------------:|
+|:-----------:|:-------:|:-------:|:--------------------------------|
 | `edit-mode` | boolean | false   | 編輯模式下只限於更動文本類型的資料 |
 
-### API
+### APIs
 
-| Function                | Parameter | Return | Feature               |
-|:-----------------------:|:---------:|:------:|:---------------------:|
-| `junForm.getFormJSON()` | -         | JSON   | 取得該表單的 JSON 數據 |
-| `junForm.renderForm()`  | Object    | -      | 將數據渲染回畫面       |
+| Function                  | Parameter | Return | Feature               |
+|:-------------------------:|:---------:|:------:|:----------------------|
+| `junForm.getFormJSON()`   | -         | JSON   | 取得該表單的 JSON 數據 |
+| `junForm.renderForm(obj)` | Object    | -      | 將數據渲染回畫面       |
 
 - 渲染表單
 
@@ -96,13 +96,13 @@ app.bundle.js 方可完成更新
 ### Options
 
 | Attribute    | Type    | Default | Feature                            |
-|:------------:|:-------:|:-------:|:----------------------------------:|
+|:------------:|:-------:|:-------:|:-----------------------------------|
 | `show-score` | boolean | false   | 顯示該表單分數（需開啟計分模式）      |
 | `ready-only` | boolean | false   | 唯讀模式，該表單的所有輸入框都將被禁用 |
 
-### API
+### APIs
 
-| Function                | Parameter | Return | Feature        |
-|:-----------------------:|:---------:|:------:|:--------------:|
-| `junForm.getFormJSON()` | -         | JSON   | 取得該表單的 JSON 數據，該函數會一併驗證信箱及必填項目，若驗證失敗即跳出相對應的警告視窗及回傳 `undefined`，否則您將得到您期望的 JSON 數據 |
-| `junForm.renderForm()`  | Object    | -      | 將數據渲染回畫面 |
+| Function                 | Parameter | Return | Feature        |
+|:------------------------:|:---------:|:------:|:---------------|
+| `junForm.getFormJSON()`  | -         | JSON   | 取得該表單的 JSON 數據，該函數會一併驗證信箱及必填項目，若驗證失敗即跳出相對應的警告視窗及回傳 `undefined`，否則您將得到您期望的 JSON 數據 |
+| `junForm.renderForm(obj)`| Object    | -      | 將數據渲染回畫面 |
