@@ -6,11 +6,13 @@ CSS：
   
 JavaScript：
   - scripts/app.bundle.js
+  
   - scripts/other/vue.js
   - scripts/other/vuex.js
   - scripts/other/sortable.js
   - scripts/other/vue-select.js
   - scripts/other/vue-draggable.js
+  - scripts/other/vue2-datepicker.js
   
 Font Awsome：
   - <script src="https://kit.fontawesome.com/b5bdf28be2.js" crossorigin="anonymous"></script>
@@ -40,6 +42,7 @@ Font Awsome：
   <script src="./scripts/other/sortable.js"></script>
   <script src="./scripts/other/vue-draggable.js"></script>
   <script src="./scripts/other/vue-select.js"></script>
+  <script src="./scripts/other/vue2-datepicker.js"></script>
 
   <script type="module" src="./scripts/app.js"></script>
 </body>
