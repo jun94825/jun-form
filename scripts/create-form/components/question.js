@@ -9,7 +9,7 @@ export default Vue.component('Question', {
     <div class="question">
       <div class="banana-container">
         <small>題組 {{ index + 1 }}</small>
-        <i v-if="被綁定囉呵呵" class="fas fa-link" @click="switchDialog(option)"></i>
+        <i v-if="被綁定囉呵呵" class="fas fa-link"></i>
       </div>
 
       <input type="text" class="title" v-model="question.Title" placeholder="問題">
