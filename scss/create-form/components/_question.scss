@@ -9,12 +9,24 @@
   position: relative;
   margin-bottom: 0.5rem;
 
-  small {
-    color: #fff;
-    border-radius: 0.25rem;
-    padding: 0.25rem 0.5rem;
-    background-color: $primary;
+  .banana-container {
+    display: flex;
+    justify-content: space-between;
+
+    small {
+      color: #fff;
+      border-radius: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      background-color: $primary;
+    }
+
+    > .fas {
+      color: red;
+      font-size: 1.25rem;
+    }
   }
+
+  
 
   .title {
     margin-top: 1rem;
@@ -111,6 +123,8 @@
         width: 65%;
         margin-left: 1rem;
         position: relative;
+
+        
 
         input {
           @include input(100%);
@@ -243,4 +257,13 @@
 .ghost {
   opacity: 0.5;
   box-shadow: 0 0.5rem 2.5rem 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-addNewOption {
+  cursor: pointer;
+  width: 84px;
+  color: #fff;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: #EF6C00;
 }

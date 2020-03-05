@@ -7,8 +7,9 @@ export default Vue.component('Question', {
   },
   template: `
     <div class="question">
-      <div>
+      <div class="banana-container">
         <small>題組 {{ index + 1 }}</small>
+        <i v-if="被綁定囉呵呵" class="fas fa-link" @click="switchDialog(option)"></i>
       </div>
 
       <input type="text" class="title" v-model="question.Title" placeholder="問題">
@@ -61,11 +62,7 @@ export default Vue.component('Question', {
         </div>
 
         <div class="option" v-if="question.Type === 'radio' || question.Type === 'checkbox' || question.Type === 'dropdown'">
-          <i :class="currentType.class"></i>
-          <div class="shit">
-            <input type="text" placeholder="新增選項" @click="addNewOption">
-            <span class="bar"></span>
-          </div>
+          <div class="btn-addNewOption" @click="addNewOption">新增選項</div>
         </div>
       </div>
 
@@ -109,6 +106,19 @@ export default Vue.component('Question', {
         this.question.Type = value;
       },
     },
+    被綁定囉呵呵() {
+      let res = false;
+
+      this.form.Questions.forEach(question => {
+        question.Options.forEach(option => {
+          option.Binding.forEach(guid => {
+            if (guid === this.question.Guid) res = true;
+          });
+        });
+      });
+
+      return res;
+    },
   },
   methods: {
     up() {
@@ -142,6 +152,14 @@ export default Vue.component('Question', {
       this.question.Options.splice(index, 1);
     },
     delQuestion() {
+      this.form.Questions.forEach(question => {
+        question.Options.forEach(option => {
+          option.Binding.forEach((guid, index, array) => {
+            if (guid === this.question.Guid) array.splice(index, 1);
+          });
+        });
+      });
+
       this.form.Questions.splice(this.index, 1);
     },
     switchDialog(option) {
