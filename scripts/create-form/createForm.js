@@ -35,7 +35,7 @@ export default Vue.component('CreateForm', {
           </div>
 
           <div class="drag" v-if="!editMode" @click="switchDragStatus">
-            <i class="fas fa-random"></i>
+            <i class="fas fa-list-ol"></i>
             <p>拖曳題組</p>
           </div>
 
