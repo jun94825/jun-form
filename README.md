@@ -74,7 +74,7 @@ app.bundle.js 方可完成更新
 - 建立表單
 
 ```html
-<create-form :edit-mode="boolean" />
+<create-form :edit-mode="boolean" :back-url="string" />
 ```
 
 ### Options
@@ -94,7 +94,7 @@ app.bundle.js 方可完成更新
 - 渲染表單
 
 ```html
-<render-form :show-score="boolean" :read-only="boolean" />
+<render-form :show-score="boolean" :read-only="boolean" :back-url="string" />
 ```
 
 ### Options
