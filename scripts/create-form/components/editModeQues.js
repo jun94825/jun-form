@@ -11,8 +11,10 @@ export default Vue.component('EditModeQues', {
         <small>題組 {{ index + 1 }}</small>
       </div>
 
-      <input type="text" class="title" v-model="question.Title" placeholder="問題">
-      <span class="bar"></span>
+      <div class="question-title-container">
+        <input type="text" v-model="question.Title" placeholder="問題">
+        <span class="bar"></span>
+      </div>
 
       <div class="options">
         <div v-if="question.Type === 'radio' || question.Type === 'checkbox' || question.Type === 'dropdown'">
