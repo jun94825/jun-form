@@ -14,6 +14,10 @@ export default Vue.component('CreateForm', {
       type: Boolean,
       default: false,
     },
+    backUrl: {
+      type: String,
+      default: '',
+    },
   },
   template: `
     <div>
@@ -25,6 +29,11 @@ export default Vue.component('CreateForm', {
       
       <div id="main">
         <div class="functions">
+          <div class="back" @click="back">
+            <i class="fas fa-arrow-left"></i>
+            <p>返回</p>
+          </div>
+
           <div class="drag" v-if="!editMode" @click="switchDragStatus">
             <i class="fas fa-random"></i>
             <p>拖曳題組</p>
@@ -110,6 +119,13 @@ export default Vue.component('CreateForm', {
     },
     renderForm(obj) {
       store.state.form = obj;
+    },
+    back() {
+      if (this.backUrl === '') {
+        window.alert('未正確配置返回頁面');
+      } else {
+        window.location.href = this.backUrl;
+      }
     },
     start() {},
     end() {},

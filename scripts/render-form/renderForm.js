@@ -17,6 +17,10 @@ export default Vue.component('RenderForm', {
       type: Boolean,
       default: false,
     },
+    backUrl: {
+      type: String,
+      default: '',
+    },
   },
   data: () => ({
     form: {},
@@ -25,6 +29,11 @@ export default Vue.component('RenderForm', {
   template: `
     <div>
       <div class="container">
+        <div class="back" @click="back">
+          <i class="fas fa-arrow-left"></i>
+          <p>返回</p>
+        </div>
+
         <p class="total-score" v-if="totalScore !== 0">{{ totalScore }}</p>
         
         <div class="r-header">
@@ -155,7 +164,9 @@ export default Vue.component('RenderForm', {
       );
 
       bananas.forEach(banana => {
-        if (!this.validateEmail(banana.Answer)) res = false;
+        if (banana.Answer.length > 0) {
+          if (!this.validateEmail(banana.Answer)) res = false;
+        }
       });
 
       return res;
@@ -195,6 +206,13 @@ export default Vue.component('RenderForm', {
         });
       } else {
         window.alert('該表單未開啟計分模式');
+      }
+    },
+    back() {
+      if (this.backUrl === '') {
+        window.alert('未正確配置返回頁面');
+      } else {
+        window.location.href = this.backUrl;
       }
     },
   },

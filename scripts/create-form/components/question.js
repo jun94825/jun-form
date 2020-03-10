@@ -12,8 +12,10 @@ export default Vue.component('Question', {
         <i v-if="被綁定囉呵呵" class="fas fa-link"></i>
       </div>
 
-      <input type="text" class="title" v-model="question.Title" placeholder="問題">
-      <span class="bar"></span>
+      <div class="question-title-container">
+        <input type="text" v-model="question.Title" placeholder="問題">
+        <span class="bar"></span>
+      </div>
 
       <div class="type-container">
         <p>類型</p>
@@ -37,7 +39,7 @@ export default Vue.component('Question', {
           <div class="option" v-for="(option, index) in question.Options" :key="index">
             <i :class="currentType.class"></i>
             <div class="shit">
-              <input type="text" v-model="option.Value">
+              <input type="text" v-model="option.Value" :data-key="option.Guid">
               <span class="bar"></span>
             </div>
             <div class="fuck" v-if="form.ScoreEnable">
@@ -62,7 +64,11 @@ export default Vue.component('Question', {
         </div>
 
         <div class="option" v-if="question.Type === 'radio' || question.Type === 'checkbox' || question.Type === 'dropdown'">
-          <div class="btn-addNewOption" @click="addNewOption">新增選項</div>
+          <i :class="currentType.class"></i>
+          <div class="shit">
+            <input type="text" placeholder="新增選項" @click="addNewOption">
+            <span class="bar"></span>
+          </div>
         </div>
       </div>
 
@@ -80,7 +86,7 @@ export default Vue.component('Question', {
         <div class="line"></div>
         <div class="delete-area">
           <i class="fas fa-trash" @click="delQuestion"></i>  
-          <p>刪除此題組</p>
+          <p @click="delQuestion">刪除此題組</p>
         </div>
       </div>
     </div>
@@ -141,11 +147,19 @@ export default Vue.component('Question', {
       }
     },
     addNewOption() {
+      const guid = this.$root.getGuid();
+
       this.question.Options.push({
-        Guid: this.$root.getGuid(),
+        Guid: guid,
         Value: `選項 ${this.question.Options.length + 1}`,
         Binding: [],
         Score: 0,
+      });
+
+      Vue.nextTick(() => {
+        const target = document.querySelector(`input[data-key="${guid}"]`);
+        target.focus();
+        target.select();
       });
     },
     delOption(index) {
@@ -169,5 +183,11 @@ export default Vue.component('Question', {
     limitNumber(e) {
       e.target.value = e.target.value.replace(/[^\d]/g, '');
     },
+  },
+  mounted() {
+    window.addEventListener('click', e => {
+      const domTypeList = document.querySelector('.type-list');
+      if (e.target !== domTypeList) this.typeStatus = false;
+    });
   },
 });

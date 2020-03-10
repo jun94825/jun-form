@@ -17,7 +17,6 @@ export default Vue.component('checkbox', {
   },
   methods: {
     checkBinding(data, item) {
-      // 檢查綁定 & 控制顯示與隱藏
       if (item.Binding.length > 0) {
         item.Binding.forEach(Guid => {
           if (data.Answer.length === 0) {

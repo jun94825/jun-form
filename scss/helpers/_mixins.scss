@@ -12,7 +12,7 @@
 @mixin input($w) {
   width: $w;
   border: none;
-  border-bottom: 0.0625rem solid $gray;
+  // border-bottom: 0.0625rem solid $gray;
 
   &:focus {
     outline: none;
@@ -21,6 +21,10 @@
   &:focus + .bar:before,
   &:focus + .bar:after {
     width: 50%;
+  }
+
+  &:hover {
+    border-bottom: 0.0625rem solid #ccc;
   }
 }
 
@@ -42,9 +46,9 @@
     content: '';
     position: absolute;
     background: $primary;
-    transition: 0.25s ease all;
-    -moz-transition: 0.25s ease all;
-    -webkit-transition: 0.25s ease all;
+    transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    -webkit-transition: all 0.35s;
   }
 }
 

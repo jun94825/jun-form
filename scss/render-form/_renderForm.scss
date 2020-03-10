@@ -4,6 +4,23 @@
 .container {
   position: relative;
 
+  .back {
+    @include f-a-j(center, unset);
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background-color: #fff;
+    border: 1px solid #999;
+    display: flex;
+    width: 4.25rem;
+    margin: 0.5rem 0;
+
+    i {
+      margin-right: 0.5rem;
+    }
+  }
+
   .total-score {
     top: 1rem;
     right: 3rem;
@@ -40,6 +57,11 @@
 
     p {
       font-size: 2rem;
+    }
+
+    p,
+    small {
+      word-break: break-all;
     }
   }
 

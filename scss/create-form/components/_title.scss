@@ -19,21 +19,37 @@
     position: absolute;
   }
 
-  .title-text {
-    font-size: 1.75rem;
+  .title-container {
+    @include s(100%, 2.625rem);
+    position: relative;
+
+    > input {
+      @include input(100%);
+      font-size: 1.75rem;
+    }
+
+    .bar {
+      @include bar(100%, absolute);
+      top: 42px;
+      left: 0;
+    }
   }
 
-  .description {
+  .description-container {
+    @include s(100%, 1.375rem);
     margin-top: 1.5rem;
     padding-bottom: 2px;
-  }
+    position: relative;
 
-  input {
-    @include input(100%);
-  }
+    > input {
+      @include input(100%);
+    }
 
-  .bar {
-    @include bar(100%, relative);
+    .bar {
+      @include bar(100%, absolute);
+      top: 22px;
+      left: 0;
+    }
   }
 
   .switch-area {
