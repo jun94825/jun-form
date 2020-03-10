@@ -82,6 +82,7 @@ app.bundle.js 方可完成更新
 | Attribute   | Type    | Default | Feature                         |
 |:------------|:-------:|:-------:|:--------------------------------|
 | `edit-mode` | boolean | false   | 編輯模式，只限於更動文本類型的資料 |
+| `back-url`  | string  | ''      | 欲返回頁面的 URL，帶入參數即可作動 |
 
 ### APIs
 
@@ -102,6 +103,7 @@ app.bundle.js 方可完成更新
 |:-------------|:-------:|:-------:|:-----------------------------------|
 | `show-score` | boolean | false   | 顯示分數，需開啟計分模式             |
 | `ready-only` | boolean | false   | 唯讀模式，該表單的所有輸入框都將被禁用 |
+| `back-url`  | string  | ''      | 欲返回頁面的 URL，帶入參數即可作動 |
 
 ### APIs
 
